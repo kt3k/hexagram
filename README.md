@@ -9,6 +9,11 @@
 - UI: [Basecoat UI](https://basecoatui.com/) + Tailwind CSS v4
 - 配信: GitHub Pages
 
+> [!NOTE]
+> 初回だけ、リポジトリの Settings → Pages で Source を「GitHub Actions」に
+> 設定してください。workflow の権限では Pages を有効にできないため、 設定前は
+> `configure-pages` の手順で失敗します。
+
 ## 使い方
 
 ```sh

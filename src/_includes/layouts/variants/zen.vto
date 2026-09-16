@@ -1,0 +1,42 @@
+---
+layout: layouts/base.vto
+---
+{{# 縦書きと円相。間をたっぷりとる #}}
+<article class="v-zen">
+  <div class="v-zen-stage">
+    <div class="v-zen-enso" aria-hidden="true"></div>
+    <div class="v-zen-vertical">
+      <h1 class="v-zen-name">{{ hexagram.name }}</h1>
+      <p class="v-zen-summary">{{ hexagram.summary }}</p>
+    </div>
+    <div class="v-zen-mark">
+      {{ comp.gua({ hexagram, size: "md" }) }}
+      <p class="v-zen-n">第{{ hexagram.n }}卦</p>
+      <p class="v-zen-reading">{{ hexagram.reading }}</p>
+    </div>
+  </div>
+
+  <div class="v-zen-body">
+    <section>
+      <p class="section-label">卦辞</p>
+      {{ comp.judgment({ hexagram }) }}
+    </section>
+    {{ comp.art({ hexagram, modifier: "v-zen-art" }) }}
+    <section>
+      <p class="section-label">解説</p>
+      {{ comp.commentary({ hexagram }) }}
+    </section>
+    <section>
+      <p class="section-label">要目</p>
+      {{ comp.keywords({ hexagram, variant: "outline" }) }}
+    </section>
+    <section>
+      <p class="section-label">卦の成り立ち</p>
+      {{ comp.trigrams({ hexagram }) }}
+    </section>
+    <section>
+      <p class="section-label">関連する卦</p>
+      {{ comp.relations({ hexagram, all: hexagrams }) }}
+    </section>
+  </div>
+</article>

@@ -1,0 +1,10 @@
+{{# 卦名の表示。どのページでも卦名と読みが即座に読み取れるようにする #}}
+{{ set scale = size || "md" }}
+<div class="nameplate nameplate-{{ scale }}">
+  <p class="nameplate-number">第{{ hexagram.n }}卦</p>
+  <h1 class="nameplate-name">{{ hexagram.name }}</h1>
+  <p class="nameplate-reading">{{ hexagram.reading }}</p>
+  {{ if showEnglish }}
+    <p class="nameplate-english">{{ hexagram.english }}</p>
+  {{ /if }}
+</div>

@@ -7,7 +7,7 @@
  *
  *   deno task vendor:basecoat
  */
-import { dirname, join, normalize } from "jsr:@std/path@1";
+import { dirname, join, normalize } from "@std/path";
 
 const PACKAGE = "basecoat-css";
 const VERSION = "1.0.2";

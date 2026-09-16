@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description || "易経の六十四卦を、卦ごとに異なるレイアウトで読む。" }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&display=swap">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:type" content="{{ hexagram ? "article" : "website" }}">
+    {{ if hexagram }}
+      <meta property="og:image" content="{{ `/img/hexagrams/${String(hexagram.n).padStart(2, "0")}.svg` |> url(true) }}">
+    {{ /if }}
+    <script>
+      // 描画前に配色を決め、再読み込み時のちらつきを防ぐ
+      try {
+        const saved = localStorage.getItem("hexagram-theme");
+        const dark = saved ? saved === "dark"
+          : matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", dark);
+      } catch (_) { /* localStorage が使えない環境では既定の配色のまま */ }
+    </script>
+  </head>
+  <body class="{{ hexagram ? `page-hexagram layout-${hexagram.layout}` : "page-index" }}"
+        {{ if hexagram }}style="--hx-upper: {{ hexagram.upper.hue }}; --hx-lower: {{ hexagram.lower.hue }}"{{ /if }}>
+    <a class="skip-link" href="#main">本文へ移動</a>
+
+    <header class="topbar">
+      <a class="topbar-home" href="/">
+        <span class="topbar-home-mark">易</span>
+        <span class="topbar-home-text">六十四卦</span>
+      </a>
+
+      {{ if hexagram }}
+        <div class="topbar-id">
+          {{ comp.gua({ hexagram, size: "xs" }) }}
+          <span class="topbar-number">{{ hexagram.n }}</span>
+          <span class="topbar-name">{{ hexagram.name }}</span>
+          <span class="topbar-reading">{{ hexagram.reading }}</span>
+        </div>
+      {{ /if }}
+
+      <nav class="topbar-nav">
+        {{ if hexagram }}
+          <a class="btn" data-variant="ghost" data-size="icon-sm"
+             href="{{ hexagrams[hexagram.prev - 1].url }}"
+             title="第{{ hexagram.prev }}卦 {{ hexagrams[hexagram.prev - 1].name }}"
+             aria-label="前の卦へ">‹</a>
+          <a class="btn" data-variant="ghost" data-size="icon-sm"
+             href="{{ hexagrams[hexagram.next - 1].url }}"
+             title="第{{ hexagram.next }}卦 {{ hexagrams[hexagram.next - 1].name }}"
+             aria-label="次の卦へ">›</a>
+        {{ /if }}
+        <button class="btn theme-toggle" data-variant="ghost" data-size="icon-sm"
+                type="button" aria-label="配色を切り替える">
+          <span aria-hidden="true"></span>
+        </button>
+      </nav>
+    </header>
+
+    <main id="main">{{ content }}</main>
+
+    {{ if hexagram }}
+      <nav class="pager" aria-label="前後の卦">
+        <a class="pager-link pager-prev" href="{{ hexagrams[hexagram.prev - 1].url }}">
+          <span class="pager-dir">前の卦</span>
+          <span class="pager-glyph">{{ hexagrams[hexagram.prev - 1].glyph }}</span>
+          <span class="pager-name">第{{ hexagram.prev }}卦 {{ hexagrams[hexagram.prev - 1].name }}</span>
+        </a>
+        <a class="pager-link pager-next" href="{{ hexagrams[hexagram.next - 1].url }}">
+          <span class="pager-dir">次の卦</span>
+          <span class="pager-glyph">{{ hexagrams[hexagram.next - 1].glyph }}</span>
+          <span class="pager-name">第{{ hexagram.next }}卦 {{ hexagrams[hexagram.next - 1].name }}</span>
+        </a>
+      </nav>
+    {{ /if }}
+
+    <footer class="site-footer">
+      <p>卦辞は通行本『周易』より。訳と解説はこのサイトによる。</p>
+      <p><a href="/">六十四卦の一覧へ戻る</a></p>
+    </footer>
+
+    <script src="/js/theme.js"></script>
+  </body>
+</html>

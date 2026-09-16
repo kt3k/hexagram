@@ -1,0 +1,38 @@
+---
+layout: layouts/base.vto
+---
+{{# 巻物のように、横へ送って読む #}}
+<article class="v-scroll">
+  <p class="v-scroll-hint">横に送って読みます</p>
+  <div class="v-scroll-rail">
+    <section class="v-scroll-panel v-scroll-title">
+      {{ comp.gua({ hexagram, size: "lg" }) }}
+      {{ comp.nameplate({ hexagram, size: "lg", showEnglish: true }) }}
+      <p class="summary-line">{{ hexagram.summary }}</p>
+      {{ comp.keywords({ hexagram }) }}
+    </section>
+
+    <section class="v-scroll-panel v-scroll-image">
+      {{ comp.art({ hexagram, eager: true, modifier: "v-scroll-art" }) }}
+    </section>
+
+    <section class="v-scroll-panel">
+      <p class="section-label">卦辞</p>
+      {{ comp.judgment({ hexagram }) }}
+    </section>
+
+    {{ for paragraph of hexagram.commentary }}
+      <section class="v-scroll-panel v-scroll-prose">
+        <p class="section-label">解説</p>
+        <p>{{ paragraph }}</p>
+      </section>
+    {{ /for }}
+
+    <section class="v-scroll-panel">
+      <p class="section-label">卦の成り立ち</p>
+      {{ comp.trigrams({ hexagram }) }}
+      <p class="section-label v-scroll-gap">関連する卦</p>
+      {{ comp.relations({ hexagram, all: hexagrams }) }}
+    </section>
+  </div>
+</article>

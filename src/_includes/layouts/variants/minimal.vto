@@ -1,0 +1,24 @@
+---
+layout: layouts/base.vto
+---
+{{# 余白を最大にとり、要素を最小限だけ置く #}}
+<article class="v-minimal">
+  <header class="v-minimal-head">
+    {{ comp.gua({ hexagram, size: "md" }) }}
+    {{ comp.nameplate({ hexagram, size: "md" }) }}
+  </header>
+
+  <p class="v-minimal-summary summary-line">{{ hexagram.summary }}</p>
+
+  <section class="v-minimal-judgment">{{ comp.judgment({ hexagram }) }}</section>
+
+  <section class="v-minimal-text">{{ comp.commentary({ hexagram }) }}</section>
+
+  {{ comp.art({ hexagram, modifier: "v-minimal-art" }) }}
+
+  <footer class="v-minimal-foot">
+    {{ comp.keywords({ hexagram, variant: "outline" }) }}
+    {{ comp.trigrams({ hexagram }) }}
+    {{ comp.relations({ hexagram, all: hexagrams }) }}
+  </footer>
+</article>

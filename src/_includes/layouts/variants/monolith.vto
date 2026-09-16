@@ -1,0 +1,33 @@
+---
+layout: layouts/base.vto
+---
+{{# 巨大な卦象を一つ据え、その下に一本の柱のように文章を積む #}}
+<article class="v-monolith">
+  <div class="v-monolith-hero">
+    {{ comp.gua({ hexagram, size: "xl" }) }}
+    {{ comp.nameplate({ hexagram, size: "xl", showEnglish: true }) }}
+    <p class="summary-line">{{ hexagram.summary }}</p>
+    {{ comp.keywords({ hexagram }) }}
+  </div>
+
+  {{ comp.art({ hexagram, eager: true, modifier: "v-monolith-art" }) }}
+
+  <div class="v-monolith-body">
+    <section>
+      <p class="section-label">卦辞</p>
+      {{ comp.judgment({ hexagram }) }}
+    </section>
+    <section>
+      <p class="section-label">解説</p>
+      {{ comp.commentary({ hexagram }) }}
+    </section>
+    <section>
+      <p class="section-label">卦の成り立ち</p>
+      {{ comp.trigrams({ hexagram }) }}
+    </section>
+    <section>
+      <p class="section-label">関連する卦</p>
+      {{ comp.relations({ hexagram, all: hexagrams }) }}
+    </section>
+  </div>
+</article>

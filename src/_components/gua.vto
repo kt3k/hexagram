@@ -1,0 +1,10 @@
+{{# 卦の形（六爻）。下から上へ積むので、描画は上下反転して並べる #}}
+{{ set scale = size || "md" }}
+<div class="gua gua-{{ scale }}" data-glyph="{{ hexagram.glyph }}" role="img"
+     aria-label="{{ hexagram.name }}の卦象">
+  {{ for line of hexagram.lines.toReversed() }}
+    <div class="gua-line {{ line.yang ? "is-yang" : "is-yin" }}">
+      <i></i>{{ if !line.yang }}<i></i>{{ /if }}
+    </div>
+  {{ /for }}
+</div>

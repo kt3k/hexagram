@@ -1,0 +1,38 @@
+---
+layout: layouts/base.vto
+---
+{{# 斜めに切った帯を重ねて、傾いた構図をつくる #}}
+<article class="v-diagonal">
+  <div class="v-diagonal-hero">
+    <div class="v-diagonal-slab" aria-hidden="true"></div>
+    <div class="v-diagonal-head">
+      {{ comp.gua({ hexagram, size: "lg" }) }}
+      {{ comp.nameplate({ hexagram, size: "lg", showEnglish: true }) }}
+    </div>
+    {{ comp.art({ hexagram, eager: true, modifier: "v-diagonal-art" }) }}
+  </div>
+
+  <div class="v-diagonal-body">
+    <p class="v-diagonal-summary summary-line">{{ hexagram.summary }}</p>
+    {{ comp.keywords({ hexagram }) }}
+
+    <section class="v-diagonal-judgment">
+      <p class="section-label">卦辞</p>
+      {{ comp.judgment({ hexagram }) }}
+    </section>
+    <section>
+      <p class="section-label">解説</p>
+      {{ comp.commentary({ hexagram }) }}
+    </section>
+    <div class="v-diagonal-meta">
+      <section>
+        <p class="section-label">卦の成り立ち</p>
+        {{ comp.trigrams({ hexagram }) }}
+      </section>
+      <section>
+        <p class="section-label">関連する卦</p>
+        {{ comp.relations({ hexagram, all: hexagrams }) }}
+      </section>
+    </div>
+  </div>
+</article>

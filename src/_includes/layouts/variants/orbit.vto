@@ -1,0 +1,42 @@
+---
+layout: layouts/base.vto
+---
+{{# 中央に卦象を据え、その周りに要素をめぐらせる #}}
+<article class="v-orbit">
+  <div class="v-orbit-core">
+    <div class="v-orbit-ring" aria-hidden="true"></div>
+    <div class="v-orbit-center">
+      {{ comp.gua({ hexagram, size: "lg" }) }}
+      {{ comp.nameplate({ hexagram, size: "md", showEnglish: true }) }}
+    </div>
+    <div class="v-orbit-satellite v-orbit-n">
+      <p class="section-label">要旨</p>
+      <p class="summary-line">{{ hexagram.summary }}</p>
+    </div>
+    <div class="v-orbit-satellite v-orbit-e">
+      <p class="section-label">上卦・下卦</p>
+      {{ comp.trigrams({ hexagram }) }}
+    </div>
+    <div class="v-orbit-satellite v-orbit-s">
+      <p class="section-label">要目</p>
+      {{ comp.keywords({ hexagram }) }}
+    </div>
+    <div class="v-orbit-satellite v-orbit-w">
+      <p class="section-label">関連する卦</p>
+      {{ comp.relations({ hexagram, all: hexagrams }) }}
+    </div>
+  </div>
+
+  {{ comp.art({ hexagram, modifier: "v-orbit-art" }) }}
+
+  <div class="v-orbit-body">
+    <section>
+      <p class="section-label">卦辞</p>
+      {{ comp.judgment({ hexagram }) }}
+    </section>
+    <section>
+      <p class="section-label">解説</p>
+      {{ comp.commentary({ hexagram }) }}
+    </section>
+  </div>
+</article>

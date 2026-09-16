@@ -1,6 +1,7 @@
 import lume from "lume/mod.ts";
 import tailwindcss from "lume/plugins/tailwindcss.ts";
 import sitemap from "lume/plugins/sitemap.ts";
+import basePath from "lume/plugins/base_path.ts";
 
 const site = lume({
   src: "./src",
@@ -9,6 +10,9 @@ const site = lume({
 });
 
 site.use(tailwindcss());
+// GitHub Pages のプロジェクトページは /hexagram/ 以下に置かれるため、
+// 絶対パスの参照に location のパスを補う
+site.use(basePath());
 site.use(sitemap());
 
 site.add("styles.css");

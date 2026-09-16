@@ -1,17 +1,89 @@
 ---
+layout: layouts/base.vto
 title: 易 六十四卦
+description: 易経の六十四卦を、卦ごとに異なるレイアウトで読むサイト。卦辞・現代語訳・解説と、卦ごとに生成した抽象画を収める。
 ---
-<!doctype html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="/styles.css">
-  </head>
-  <body class="bg-background text-foreground">
-    <main class="p-10">
-      <h1 class="text-3xl font-bold">{{ title }}</h1>
-      <button class="btn">テスト</button>
-    </main>
-  </body>
-</html>
+<div class="home">
+  <header class="home-hero">
+    <p class="home-eyebrow">周易 · 六十四卦</p>
+    <h1 class="home-title">易の六十四卦</h1>
+    <p class="home-lead">
+      天地のあいだに起こりうる有り様を六十四に分けたのが易の卦です。
+      ここでは一卦ずつ、卦辞とその現代語訳、現代の言葉による解説、
+      そして卦の気配を映した抽象画を並べています。
+      ページの構成は卦ごとにすべて変えてあります。
+    </p>
+  </header>
+
+  <div class="home-controls">
+    <div class="home-search">
+      <label class="label" for="q">卦をさがす</label>
+      <input class="input" type="search" id="q" placeholder="卦名・読み・キーワードで絞りこむ"
+             autocomplete="off" spellcheck="false">
+      <p class="home-count" id="count" role="status" aria-live="polite"></p>
+    </div>
+    <div class="home-views" role="tablist" aria-label="一覧の表示方法">
+      <button class="btn" data-variant="outline" data-size="sm" type="button"
+              role="tab" aria-selected="true" data-view="sequence">序卦の順</button>
+      <button class="btn" data-variant="ghost" data-size="sm" type="button"
+              role="tab" aria-selected="false" data-view="matrix">八卦の方陣</button>
+    </div>
+  </div>
+
+  {{# 序卦伝の順に 64 枚を並べる #}}
+  <ol class="hex-grid" id="view-sequence">
+    {{ for h of hexagrams }}
+      <li class="hex-card-item"
+          data-search="{{ `${h.name} ${h.reading} ${h.kanji} ${h.english} ${h.keywords.join(" ")} ${h.summary}` }}">
+        <a class="hex-card" href="{{ h.url }}"
+           style="--hx-upper: {{ h.upper.hue }}; --hx-lower: {{ h.lower.hue }}">
+          <span class="hex-card-n">{{ h.n }}</span>
+          {{ comp.gua({ hexagram: h, size: "sm" }) }}
+          <span class="hex-card-name">{{ h.name }}</span>
+          <span class="hex-card-reading">{{ h.reading }}</span>
+          <span class="hex-card-summary">{{ h.summary }}</span>
+          <span class="hex-card-keys">
+            {{ for word of h.keywords }}<span class="badge" data-variant="outline">{{ word }}</span>{{ /for }}
+          </span>
+        </a>
+      </li>
+    {{ /for }}
+  </ol>
+
+  {{# 上卦を行、下卦を列にとった 8 × 8 の方陣 #}}
+  <div class="hex-matrix-wrap" id="view-matrix" hidden>
+    <table class="hex-matrix">
+      <caption>縦が上卦、横が下卦。交点がその二つを重ねた卦です。</caption>
+      <thead>
+        <tr>
+          <td></td>
+          {{ for lower of bagua }}
+            <th scope="col"><span class="matrix-head">{{ lower.kanji }}</span><span class="matrix-sub">{{ lower.image }}</span></th>
+          {{ /for }}
+        </tr>
+      </thead>
+      <tbody>
+        {{ for upper of bagua }}
+          <tr>
+            <th scope="row"><span class="matrix-head">{{ upper.kanji }}</span><span class="matrix-sub">{{ upper.image }}</span></th>
+            {{ for lower of bagua }}
+              {{ set cell = hexagrams.find((h) => h.binary === lower.bits + upper.bits) }}
+              <td>
+                <a class="matrix-cell" href="{{ cell.url }}"
+                   style="--hx-upper: {{ upper.hue }}; --hx-lower: {{ lower.hue }}">
+                  <span class="matrix-glyph">{{ cell.glyph }}</span>
+                  <span class="matrix-n">{{ cell.n }}</span>
+                  <span class="matrix-name">{{ cell.name }}</span>
+                </a>
+              </td>
+            {{ /for }}
+          </tr>
+        {{ /for }}
+      </tbody>
+    </table>
+  </div>
+
+  <p class="home-empty" id="empty" hidden>あてはまる卦がありません。</p>
+</div>
+
+<script src="/js/index.js"></script>

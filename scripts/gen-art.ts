@@ -205,7 +205,7 @@ const wind: Painter = ({ x, y, w, h }, rnd, color, accent) => {
 };
 
 /** 山 — 重なり合う稜線。遠景ほど淡く霞ませて奥行きを出す */
-const mountain: Painter = ({ x, y, w, h }, rnd, color, accent) => {
+const mountain: Painter = ({ x, y, w, h }, rnd, color, _accent) => {
   const out: string[] = [];
   const ranges = 5 + Math.floor(rnd() * 4);
   // 奥から手前へ描き、手前ほど濃く低くする

@@ -9,6 +9,16 @@ import { TRIGRAMS } from "../src/_lib/trigrams.ts";
 import { LAYOUTS } from "../src/_lib/layouts.ts";
 
 const errors: string[] = [];
+
+/** ディレクトリを再帰的にたどってファイルの一覧を返す */
+async function* walk(dir: string): AsyncGenerator<string> {
+  for await (const entry of Deno.readDir(dir)) {
+    if (entry.name === "_vendor" || entry.name === "img") continue;
+    const path = `${dir}/${entry.name}`;
+    if (entry.isDirectory) yield* walk(path);
+    else yield path;
+  }
+}
 const fail = (n: number, msg: string) => errors.push(`第${n}卦: ${msg}`);
 
 if (HEXAGRAM_DATA.length !== 64) {
@@ -57,6 +67,45 @@ HEXAGRAM_DATA.forEach((h, i) => {
     if (stray) fail(h.n, `本文に異言語が混入しています: ${stray.join(", ")}`);
   }
 });
+
+// 本文を書くときにキリル文字やハングルが紛れこむ事故があったため、
+// データだけでなくテンプレートと配色以外のソースも走査する
+const SOURCES = ["src", "scripts", "_config.ts", "README.md"];
+const STRAY = /[\u0400-\u04FF\uAC00-\uD7AF]+/g;
+
+for (const root of SOURCES) {
+  let stat;
+  try {
+    stat = await Deno.stat(root);
+  } catch {
+    continue;
+  }
+  const files: string[] = [];
+  if (stat.isFile) {
+    files.push(root);
+  } else {
+    for await (const entry of Deno.readDir(root)) {
+      // 取りこんだ Basecoat と生成物は対象外
+      if (entry.name === "_vendor" || entry.name === "img") continue;
+      const path = `${root}/${entry.name}`;
+      if (entry.isDirectory) {
+        for await (const sub of walk(path)) files.push(sub);
+      } else {
+        files.push(path);
+      }
+    }
+  }
+  for (const file of files) {
+    // この検査自体が文字範囲を書いているので対象から外す
+    if (file.endsWith("validate-data.ts")) continue;
+    if (!/\.(ts|js|vto|css|md)$/.test(file)) continue;
+    const text = await Deno.readTextFile(file);
+    const stray = text.match(STRAY);
+    if (stray) {
+      errors.push(`${file}: 異言語の混入 — ${[...new Set(stray)].join(", ")}`);
+    }
+  }
+}
 
 for (const layout of LAYOUTS) {
   if (!layoutUse.has(layout)) errors.push(`未使用のレイアウト: ${layout}`);

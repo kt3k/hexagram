@@ -1,3 +1,5 @@
+import type { Layout } from "./layouts.ts";
+
 /** データファイルに直接書く生の卦データ */
 export interface RawHexagram {
   /** 序卦伝の番号（1〜64） */
@@ -23,5 +25,5 @@ export interface RawHexagram {
   /** 現代語の解説（段落ごと） */
   commentary: string[];
   /** ページのレイアウト種別 */
-  layout: string;
+  layout: Layout;
 }

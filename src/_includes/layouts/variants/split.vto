@@ -1,0 +1,36 @@
+---
+layout: layouts/base.vto
+---
+{{# 画面を左右に割り、左に絵を貼りつけたまま右の文章を送る #}}
+<article class="v-split">
+  <div class="v-split-visual">
+    {{ comp.art({ hexagram, eager: true, modifier: "v-split-art" }) }}
+    <div class="v-split-badge">
+      {{ comp.gua({ hexagram, size: "md" }) }}
+      <span class="v-split-glyph">{{ hexagram.glyph }}</span>
+    </div>
+  </div>
+
+  <div class="v-split-text">
+    {{ comp.nameplate({ hexagram, size: "lg", showEnglish: true }) }}
+    <p class="summary-line">{{ hexagram.summary }}</p>
+    {{ comp.keywords({ hexagram }) }}
+
+    <section>
+      <p class="section-label">卦辞</p>
+      {{ comp.judgment({ hexagram }) }}
+    </section>
+    <section>
+      <p class="section-label">解説</p>
+      {{ comp.commentary({ hexagram }) }}
+    </section>
+    <section>
+      <p class="section-label">卦の成り立ち</p>
+      {{ comp.trigrams({ hexagram }) }}
+    </section>
+    <section>
+      <p class="section-label">関連する卦</p>
+      {{ comp.relations({ hexagram, all: hexagrams }) }}
+    </section>
+  </div>
+</article>

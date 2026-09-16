@@ -1,0 +1,41 @@
+---
+layout: layouts/base.vto
+---
+{{# 大判のポスター。卦名を画面いっぱいに刷る #}}
+<article class="v-poster">
+  <header class="v-poster-head">
+    <h1 class="v-poster-name">{{ hexagram.name }}</h1>
+    <div class="v-poster-meta">
+      <span class="v-poster-n">第{{ hexagram.n }}卦</span>
+      <span class="v-poster-reading">{{ hexagram.reading }}</span>
+      <span class="v-poster-english">{{ hexagram.english }}</span>
+    </div>
+  </header>
+
+  <div class="v-poster-band">
+    {{ comp.gua({ hexagram, size: "lg" }) }}
+    <p class="summary-line">{{ hexagram.summary }}</p>
+    {{ comp.keywords({ hexagram }) }}
+  </div>
+
+  {{ comp.art({ hexagram, eager: true, modifier: "v-poster-art" }) }}
+
+  <div class="v-poster-body">
+    <section class="v-poster-judgment">
+      <p class="section-label">卦辞</p>
+      {{ comp.judgment({ hexagram }) }}
+    </section>
+    <section class="v-poster-commentary">
+      <p class="section-label">解説</p>
+      {{ comp.commentary({ hexagram }) }}
+    </section>
+    <section>
+      <p class="section-label">卦の成り立ち</p>
+      {{ comp.trigrams({ hexagram }) }}
+    </section>
+    <section>
+      <p class="section-label">関連する卦</p>
+      {{ comp.relations({ hexagram, all: hexagrams }) }}
+    </section>
+  </div>
+</article>

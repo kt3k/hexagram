@@ -1,0 +1,41 @@
+---
+layout: layouts/base.vto
+---
+{{# 等幅で組んだ、端末の画面のような構成 #}}
+<article class="v-terminal">
+  <div class="v-terminal-window">
+    <div class="v-terminal-bar">
+      <span class="v-terminal-dot"></span><span class="v-terminal-dot"></span><span class="v-terminal-dot"></span>
+      <span class="v-terminal-path">/hexagrams/{{ hexagram.n }}</span>
+    </div>
+
+    <div class="v-terminal-body">
+      <p class="v-terminal-line"><span class="v-terminal-prompt">易 ›</span> 第{{ hexagram.n }}卦</p>
+
+      <div class="v-terminal-id">
+        {{ comp.gua({ hexagram, size: "md" }) }}
+        <div>
+          <h1 class="v-terminal-name">{{ hexagram.name }}</h1>
+          <p class="v-terminal-sub">{{ hexagram.reading }} · {{ hexagram.english }} · {{ hexagram.binary }}</p>
+        </div>
+      </div>
+
+      <pre class="v-terminal-out">上卦  {{ hexagram.upper.kanji }} {{ hexagram.upper.image }}  {{ hexagram.upper.attribute }}
+下卦  {{ hexagram.lower.kanji }} {{ hexagram.lower.image }}  {{ hexagram.lower.attribute }}
+錯卦  {{ hexagram.opposite }}    綜卦  {{ hexagram.inverse }}    互卦  {{ hexagram.nuclear }}
+要目  {{ hexagram.keywords.join(" / ") }}</pre>
+
+      <p class="v-terminal-line"><span class="v-terminal-prompt">易 ›</span> 卦辞</p>
+      {{ comp.judgment({ hexagram }) }}
+
+      <p class="v-terminal-line"><span class="v-terminal-prompt">易 ›</span> 解説</p>
+      {{ comp.commentary({ hexagram }) }}
+
+      <p class="v-terminal-line"><span class="v-terminal-prompt">易 ›</span> 象</p>
+      {{ comp.art({ hexagram, modifier: "v-terminal-art" }) }}
+
+      <p class="v-terminal-line"><span class="v-terminal-prompt">易 ›</span> 関連する卦</p>
+      {{ comp.relations({ hexagram, all: hexagrams }) }}
+    </div>
+  </div>
+</article>

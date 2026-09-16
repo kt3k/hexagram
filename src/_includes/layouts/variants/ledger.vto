@@ -1,0 +1,28 @@
+---
+layout: layouts/base.vto
+---
+{{# 台帳のように、すべてを罫線付きの欄に収める #}}
+<article class="v-ledger">
+  <table class="v-ledger-table">
+    <tbody>
+      <tr class="v-ledger-title">
+        <th scope="row">卦</th>
+        <td>
+          <div class="v-ledger-titlecell">
+            {{ comp.gua({ hexagram, size: "md" }) }}
+            {{ comp.nameplate({ hexagram, size: "md", showEnglish: true }) }}
+          </div>
+        </td>
+      </tr>
+      <tr><th scope="row">要旨</th><td>{{ hexagram.summary }}</td></tr>
+      <tr><th scope="row">爻</th><td class="v-ledger-mono">{{ hexagram.lines.toReversed().map((l) => `${l.label}　${l.yang ? "━━━━━" : "━━　━━"}`).join(" / ") }}</td></tr>
+      <tr><th scope="row">上卦</th><td>{{ hexagram.upper.kanji }}（{{ hexagram.upper.image }}）　{{ hexagram.upper.attribute }}　{{ hexagram.upper.family }}　{{ hexagram.upper.direction }}</td></tr>
+      <tr><th scope="row">下卦</th><td>{{ hexagram.lower.kanji }}（{{ hexagram.lower.image }}）　{{ hexagram.lower.attribute }}　{{ hexagram.lower.family }}　{{ hexagram.lower.direction }}</td></tr>
+      <tr><th scope="row">要目</th><td>{{ comp.keywords({ hexagram, variant: "outline" }) }}</td></tr>
+      <tr><th scope="row">卦辞</th><td>{{ comp.judgment({ hexagram }) }}</td></tr>
+      <tr><th scope="row">象</th><td>{{ comp.art({ hexagram, modifier: "v-ledger-art" }) }}</td></tr>
+      <tr><th scope="row">解説</th><td>{{ comp.commentary({ hexagram }) }}</td></tr>
+      <tr><th scope="row">関連</th><td>{{ comp.relations({ hexagram, all: hexagrams }) }}</td></tr>
+    </tbody>
+  </table>
+</article>

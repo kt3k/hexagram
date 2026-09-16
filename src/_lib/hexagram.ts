@@ -18,6 +18,10 @@ export interface Hexagram extends RawHexagram {
   glyph: string;
   /** ページの URL */
   url: string;
+  /** 卦の絵の場所。AI 生成画像があればそちらを、なければ生成した SVG を指す */
+  image: string;
+  imageWidth: number;
+  imageHeight: number;
   /** 下から上へ並べた爻 */
   lines: Line[];
   lower: Trigram;
@@ -34,6 +38,35 @@ export interface Hexagram extends RawHexagram {
 }
 
 const POSITION_NAMES = ["初", "二", "三", "四", "五", "上"];
+
+/** scripts/gen-ai-images.ts が書き出す AI 生成画像の置き場所 */
+const AI_DIR = new URL("../img/hexagrams/ai/", import.meta.url);
+const AI_EXTENSIONS = ["webp", "png", "jpg"];
+
+/**
+ * 卦の絵を選ぶ。AI 生成画像が置かれていればそれを優先し、
+ * 無ければ scripts/gen-art.ts が生成した SVG を使う。
+ */
+function pickImage(n: number) {
+  const padded = String(n).padStart(2, "0");
+  for (const ext of AI_EXTENSIONS) {
+    try {
+      Deno.statSync(new URL(`${padded}.${ext}`, AI_DIR));
+      return {
+        image: `/img/hexagrams/ai/${padded}.${ext}`,
+        imageWidth: 1024,
+        imageHeight: 1024,
+      };
+    } catch {
+      // この拡張子では見つからなかっただけなので次を試す
+    }
+  }
+  return {
+    image: `/img/hexagrams/${padded}.svg`,
+    imageWidth: 1000,
+    imageHeight: 1250,
+  };
+}
 
 /** 爻から卦番号を引くための表 */
 const BY_BINARY = new Map(HEXAGRAM_DATA.map((h) => [h.binary, h.n]));
@@ -65,6 +98,7 @@ function enrich(raw: RawHexagram): Hexagram {
     ...raw,
     glyph: String.fromCodePoint(0x4dc0 + n - 1),
     url: `/hexagrams/${n}/`,
+    ...pickImage(n),
     lines: toLines(binary),
     lower: TRIGRAMS[binary.slice(0, 3)],
     upper: TRIGRAMS[binary.slice(3)],

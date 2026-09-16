@@ -1,0 +1,5 @@
+<ul class="keyword-list">
+  {{ for word of hexagram.keywords }}
+    <li><span class="badge" data-variant="{{ variant || "secondary" }}">{{ word }}</span></li>
+  {{ /for }}
+</ul>

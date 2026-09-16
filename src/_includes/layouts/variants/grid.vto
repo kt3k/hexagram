@@ -1,0 +1,31 @@
+---
+layout: layouts/base.vto
+---
+{{# 大きさの違う区画を敷き詰めた、弁当箱のような構成 #}}
+<article class="v-grid">
+  <div class="v-grid-cell v-grid-name">
+    {{ comp.nameplate({ hexagram, size: "lg", showEnglish: true }) }}
+  </div>
+  <div class="v-grid-cell v-grid-gua">{{ comp.gua({ hexagram, size: "lg" }) }}</div>
+  <div class="v-grid-cell v-grid-art">{{ comp.art({ hexagram, eager: true }) }}</div>
+  <div class="v-grid-cell v-grid-summary">
+    <p class="summary-line">{{ hexagram.summary }}</p>
+    {{ comp.keywords({ hexagram }) }}
+  </div>
+  <div class="v-grid-cell v-grid-judgment">
+    <p class="section-label">卦辞</p>
+    {{ comp.judgment({ hexagram }) }}
+  </div>
+  <div class="v-grid-cell v-grid-trigrams">
+    <p class="section-label">卦の成り立ち</p>
+    {{ comp.trigrams({ hexagram }) }}
+  </div>
+  <div class="v-grid-cell v-grid-commentary">
+    <p class="section-label">解説</p>
+    {{ comp.commentary({ hexagram }) }}
+  </div>
+  <div class="v-grid-cell v-grid-relations">
+    <p class="section-label">関連する卦</p>
+    {{ comp.relations({ hexagram, all: hexagrams }) }}
+  </div>
+</article>

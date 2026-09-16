@@ -1,6 +1,8 @@
 {
   "imports": {
-    "lume/": "https://deno.land/x/lume@v3.2.5/"
+    "lume/": "https://deno.land/x/lume@v3.2.5/",
+    "@std/path": "jsr:@std/path@1",
+    "@std/cli": "jsr:@std/cli@1"
   },
   "tasks": {
     "lume": "echo \"import 'lume/cli.ts'\" | deno run -A -",
@@ -8,20 +10,22 @@
     "serve": "deno task lume -- -s",
     "art": "deno run -A scripts/gen-art.ts",
     "ai-images": "deno run -A scripts/gen-ai-images.ts",
-    "check": "deno check _config.ts src/_lib/*.ts src/_data/*.ts scripts/*.ts",
+    "check": "deno check _config.ts src/**/*.ts scripts/*.ts",
     "vendor:basecoat": "deno run -A scripts/vendor-basecoat.ts",
     "validate": "deno run -A scripts/validate-data.ts"
   },
   "fmt": {
     "exclude": [
       "_site",
-      "src/img"
+      "src/img",
+      "src/_vendor"
     ]
   },
   "lint": {
     "exclude": [
       "_site",
-      "src/img"
+      "src/img",
+      "src/_vendor"
     ]
   },
   "compilerOptions": {

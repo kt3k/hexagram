@@ -1,0 +1,13 @@
+{{# 上卦と下卦の内訳 #}}
+<dl class="trigram-pair">
+  {{ for part of [{ label: "上卦", t: hexagram.upper }, { label: "下卦", t: hexagram.lower }] }}
+    <div class="trigram">
+      <dt>{{ part.label }}</dt>
+      <dd>
+        <span class="trigram-kanji">{{ part.t.kanji }}</span>
+        <span class="trigram-image">{{ part.t.image }}</span>
+        <span class="trigram-attr">{{ part.t.attribute }}</span>
+      </dd>
+    </div>
+  {{ /for }}
+</dl>

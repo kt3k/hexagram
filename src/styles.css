@@ -1,2 +1,1597 @@
 @import "tailwindcss";
 @import "./_vendor/basecoat.css";
+
+@theme {
+  --font-sans: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP",
+    "Yu Gothic UI", sans-serif;
+  --font-serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho",
+    "Songti SC", serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, "Noto Sans Mono", monospace;
+}
+
+/* ------------------------------------------------------------------
+   卦ごとの色。上卦・下卦の色相を body の custom property から受け取る
+   ------------------------------------------------------------------ */
+.page-hexagram {
+  --hx-accent: oklch(0.52 0.16 var(--hx-upper));
+  --hx-accent-alt: oklch(0.52 0.16 var(--hx-lower));
+  --hx-wash: oklch(0.97 0.022 var(--hx-upper));
+  --hx-wash-alt: oklch(0.96 0.026 var(--hx-lower));
+  --hx-edge: oklch(0.86 0.045 var(--hx-upper));
+}
+
+.dark .page-hexagram {
+  --hx-accent: oklch(0.82 0.15 var(--hx-upper));
+  --hx-accent-alt: oklch(0.82 0.15 var(--hx-lower));
+  --hx-wash: oklch(0.22 0.03 var(--hx-upper));
+  --hx-wash-alt: oklch(0.2 0.035 var(--hx-lower));
+  --hx-edge: oklch(0.36 0.05 var(--hx-upper));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  line-height: 1.85;
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* ------------------------------------------------------------------
+   卦象（六爻の図）。font-size で全体の大きさが決まる
+   ------------------------------------------------------------------ */
+.gua {
+  display: flex;
+  flex-direction: column;
+  gap: 0.26em;
+  width: 1em;
+  flex: none;
+  color: currentColor;
+}
+.gua-line {
+  display: flex;
+  gap: 0.2em;
+  height: 0.15em;
+}
+.gua-line > i {
+  flex: 1;
+  background: currentColor;
+  border-radius: 0.02em;
+}
+.gua-xs {
+  font-size: 1.15rem;
+}
+.gua-sm {
+  font-size: 2rem;
+}
+.gua-md {
+  font-size: 3.5rem;
+}
+.gua-lg {
+  font-size: 6rem;
+}
+.gua-xl {
+  font-size: 10rem;
+}
+.gua-accent {
+  color: var(--hx-accent);
+}
+
+/* ------------------------------------------------------------------
+   卦名
+   ------------------------------------------------------------------ */
+.nameplate-number {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+.nameplate-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0.06em;
+  margin: 0.15em 0 0;
+  font-size: clamp(2rem, 6vw, 3.4rem);
+}
+.nameplate-reading {
+  color: var(--muted-foreground);
+  letter-spacing: 0.24em;
+  font-size: 0.82rem;
+  margin: 0.4em 0 0;
+}
+.nameplate-english {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--muted-foreground);
+  font-style: italic;
+  margin: 0.2em 0 0;
+}
+.nameplate-sm .nameplate-name {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+.nameplate-lg .nameplate-name {
+  font-size: clamp(2.6rem, 9vw, 5.5rem);
+}
+.nameplate-xl .nameplate-name {
+  font-size: clamp(3rem, 13vw, 8rem);
+}
+
+/* ------------------------------------------------------------------
+   上部の固定バー。どの卦のページでも、形と名前がここに必ず出る
+   ------------------------------------------------------------------ */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem clamp(0.8rem, 3vw, 2rem);
+  background: color-mix(in oklab, var(--background) 86%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.topbar-home {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  flex: none;
+}
+.topbar-home-mark {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.topbar-home-text {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--muted-foreground);
+}
+.topbar-id {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+  margin-inline-start: auto;
+}
+.topbar-id .gua {
+  color: var(--hx-accent);
+}
+.topbar-number {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+.topbar-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+.topbar-reading {
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+}
+.topbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  margin-inline-start: auto;
+  flex: none;
+}
+.page-hexagram .topbar-nav {
+  margin-inline-start: 0;
+}
+.theme-toggle span::before {
+  content: "◐";
+  font-size: 0.95rem;
+}
+
+@media (width < 44rem) {
+  .topbar-reading,
+  .topbar-home-text {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------
+   本文の部品
+   ------------------------------------------------------------------ */
+.judgment {
+  margin: 0;
+}
+.judgment-source {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+  line-height: 2.1;
+  letter-spacing: 0.1em;
+  margin: 0;
+  padding-inline-start: 1rem;
+  border-inline-start: 3px solid var(--hx-accent);
+}
+.judgment-gloss {
+  margin-top: 1rem;
+  color: var(--muted-foreground);
+  font-size: 0.95rem;
+  line-height: 1.95;
+}
+.commentary p {
+  margin: 0 0 1.3em;
+  line-height: 2.05;
+}
+.commentary p:last-child {
+  margin-bottom: 0;
+}
+
+.keyword-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.keyword-list .badge {
+  letter-spacing: 0.1em;
+}
+
+.trigram-pair {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+}
+.trigram {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--hx-edge);
+  border-radius: var(--radius);
+  background: var(--hx-wash);
+}
+.trigram dt {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--muted-foreground);
+  flex: none;
+}
+.trigram dd {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.trigram-kanji {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--hx-accent);
+}
+.trigram-image {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+}
+.trigram-attr {
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+}
+
+.relations {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+.relation {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, background 0.15s;
+}
+.relation:hover {
+  border-color: var(--hx-accent);
+  background: var(--hx-wash);
+}
+.relation-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  color: var(--muted-foreground);
+}
+.relation-glyph {
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--hx-accent);
+}
+.relation-name {
+  font-family: var(--font-serif);
+  letter-spacing: 0.04em;
+}
+.relation-note {
+  font-size: 0.72rem;
+  color: var(--muted-foreground);
+}
+
+.gua-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.section-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  color: var(--muted-foreground);
+  margin: 0 0 0.9rem;
+  text-transform: none;
+}
+
+.summary-line {
+  font-family: var(--font-serif);
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------------
+   前後の卦・フッター
+   ------------------------------------------------------------------ */
+.pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border-block: 1px solid var(--border);
+  margin-top: 5rem;
+}
+.pager-link {
+  display: grid;
+  gap: 0.2rem;
+  padding: 1.5rem clamp(1rem, 4vw, 2.5rem);
+  background: var(--background);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.pager-link:hover {
+  background: var(--hx-wash, var(--muted));
+}
+.pager-next {
+  text-align: right;
+}
+.pager-dir {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--muted-foreground);
+}
+.pager-glyph {
+  font-size: 1.8rem;
+  line-height: 1.2;
+  color: var(--hx-accent);
+}
+.pager-name {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+}
+
+.site-footer {
+  padding: 3rem clamp(1rem, 4vw, 2.5rem) 4rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+}
+.site-footer p {
+  margin: 0.3rem 0;
+}
+.site-footer a {
+  color: inherit;
+}
+
+/* ==================================================================
+   レイアウト 1: monolith — 巨大な卦象を据え、下に一本の柱として積む
+   ================================================================== */
+.v-monolith-hero {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 1.6rem;
+  padding: clamp(3rem, 10vw, 7rem) 1.5rem clamp(2rem, 6vw, 4rem);
+}
+.v-monolith-hero .gua {
+  color: var(--hx-accent);
+}
+.v-monolith-hero .keyword-list {
+  justify-content: center;
+}
+.v-monolith-art {
+  max-width: 64rem;
+  margin: 0 auto;
+  aspect-ratio: 16 / 7;
+}
+.v-monolith-body {
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 5rem) 1.5rem 0;
+  display: grid;
+  gap: 3.5rem;
+}
+
+/* ==================================================================
+   一覧ページ
+   ================================================================== */
+.home {
+  max-width: 82rem;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 2.5rem);
+}
+.home-hero {
+  padding: clamp(3.5rem, 11vw, 8rem) 0 clamp(2rem, 5vw, 3.5rem);
+  max-width: 44rem;
+}
+.home-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+.home-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 9vw, 5rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  margin: 0.25em 0 0.5em;
+}
+.home-lead {
+  margin: 0;
+  color: var(--muted-foreground);
+  line-height: 2.1;
+  font-size: 0.98rem;
+}
+
+.home-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2.5rem;
+}
+.home-search {
+  display: grid;
+  gap: 0.4rem;
+  min-width: min(22rem, 100%);
+}
+.home-search .label {
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  color: var(--muted-foreground);
+}
+.home-count {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+  font-family: var(--font-mono);
+}
+.home-views {
+  display: flex;
+  gap: 0.35rem;
+}
+.home-empty {
+  text-align: center;
+  padding: 4rem 0;
+  color: var(--muted-foreground);
+}
+
+/* 序卦の順に並べた札 */
+.hex-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 4rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+}
+.hex-card {
+  --hx-accent: oklch(0.52 0.16 var(--hx-upper));
+  --hx-wash: oklch(0.97 0.022 var(--hx-upper));
+  --hx-edge: oklch(0.88 0.04 var(--hx-upper));
+  display: grid;
+  grid-template-areas:
+    "n    gua"
+    "name gua"
+    "read gua"
+    "sum  sum"
+    "keys keys";
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 0.15rem 1rem;
+  height: 100%;
+  padding: 1.1rem 1.2rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--background);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.16s, background 0.16s, transform 0.16s;
+}
+.dark .hex-card {
+  --hx-accent: oklch(0.82 0.15 var(--hx-upper));
+  --hx-wash: oklch(0.23 0.03 var(--hx-upper));
+  --hx-edge: oklch(0.38 0.05 var(--hx-upper));
+}
+.hex-card:hover {
+  border-color: var(--hx-edge);
+  background: var(--hx-wash);
+  transform: translateY(-2px);
+}
+.hex-card .gua {
+  grid-area: gua;
+  color: var(--hx-accent);
+}
+.hex-card-n {
+  grid-area: n;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  color: var(--muted-foreground);
+}
+.hex-card-name {
+  grid-area: name;
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+}
+.hex-card-reading {
+  grid-area: read;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  color: var(--muted-foreground);
+}
+.hex-card-summary {
+  grid-area: sum;
+  margin-top: 0.75rem;
+  font-size: 0.83rem;
+  line-height: 1.8;
+  color: var(--muted-foreground);
+}
+.hex-card-keys {
+  grid-area: keys;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.85rem;
+}
+.hex-card-keys .badge {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+/* 八卦の方陣 */
+.hex-matrix-wrap {
+  overflow-x: auto;
+  padding-bottom: 4rem;
+}
+.hex-matrix {
+  border-collapse: separate;
+  border-spacing: 3px;
+  margin: 0 auto;
+  min-width: 46rem;
+}
+.hex-matrix caption {
+  caption-side: top;
+  text-align: left;
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+  padding-bottom: 1rem;
+}
+.hex-matrix th {
+  font-weight: 500;
+  padding: 0.4rem;
+  text-align: center;
+}
+.matrix-head {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+}
+.matrix-sub {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--muted-foreground);
+}
+.matrix-cell {
+  --hx-accent: oklch(0.52 0.16 var(--hx-upper));
+  --hx-wash: oklch(0.97 0.022 var(--hx-upper));
+  display: grid;
+  justify-items: center;
+  gap: 0.1rem;
+  padding: 0.55rem 0.35rem;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 2px);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.14s, border-color 0.14s;
+}
+.dark .matrix-cell {
+  --hx-accent: oklch(0.82 0.15 var(--hx-upper));
+  --hx-wash: oklch(0.24 0.03 var(--hx-upper));
+}
+.matrix-cell:hover {
+  background: var(--hx-wash);
+  border-color: var(--hx-accent);
+}
+.matrix-glyph {
+  font-size: 1.5rem;
+  line-height: 1.1;
+  color: var(--hx-accent);
+}
+.matrix-n {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--muted-foreground);
+}
+.matrix-name {
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+/* 各レイアウトが共通で使う本文の幅 */
+.v-prose,
+.v-minimal-text,
+.v-overlay-body section,
+.v-diagonal-body section {
+  max-width: 38rem;
+}
+
+/* ==================================================================
+   レイアウト 2: minimal — 余白を最大にとる
+   ================================================================== */
+.v-minimal {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: clamp(5rem, 16vw, 12rem) 1.5rem 0;
+  display: grid;
+  gap: clamp(3.5rem, 9vw, 6.5rem);
+}
+.v-minimal-head {
+  display: grid;
+  gap: 2rem;
+}
+.v-minimal-head .gua {
+  color: var(--hx-accent);
+}
+.v-minimal-art {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius);
+}
+.v-minimal-foot {
+  display: grid;
+  gap: 2.5rem;
+}
+
+/* ==================================================================
+   レイアウト 3: split — 左に絵を貼りつけ、右の文章を送る
+   ================================================================== */
+.v-split {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (width >= 60rem) {
+  .v-split {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  }
+  .v-split-visual {
+    position: sticky;
+    top: 3.4rem;
+    height: calc(100svh - 3.4rem);
+  }
+}
+.v-split-visual {
+  position: relative;
+  background: var(--hx-wash);
+}
+.v-split-art {
+  height: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+@media (width >= 60rem) {
+  .v-split-art {
+    aspect-ratio: auto;
+  }
+}
+.v-split-badge {
+  position: absolute;
+  left: clamp(1rem, 3vw, 2.5rem);
+  bottom: clamp(1rem, 3vw, 2.5rem);
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--background) 82%, transparent);
+  backdrop-filter: blur(10px);
+  color: var(--hx-accent);
+}
+.v-split-glyph {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+.v-split-text {
+  padding: clamp(3rem, 7vw, 6rem) clamp(1.25rem, 4vw, 3.5rem) 0;
+  display: grid;
+  gap: 2.75rem;
+  align-content: start;
+  max-width: 42rem;
+}
+
+/* ==================================================================
+   レイアウト 4: journal — 罫線と段組みの雑誌風
+   ================================================================== */
+.v-journal {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vw, 5rem) clamp(1rem, 4vw, 2.5rem) 0;
+}
+.v-journal-masthead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-bottom: 1.5rem;
+  border-bottom: 3px double var(--foreground);
+}
+.v-journal-masthead .gua {
+  color: var(--hx-accent);
+}
+.v-journal-standfirst {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.8vw, 1.6rem);
+  line-height: 1.95;
+  letter-spacing: 0.04em;
+  margin: 1.75rem 0;
+  max-width: 44rem;
+}
+.v-journal-rule {
+  height: 1px;
+  background: var(--border);
+}
+.v-journal-columns {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  padding-top: 2.5rem;
+}
+@media (width >= 58rem) {
+  .v-journal-columns {
+    grid-template-columns: minmax(0, 1fr) 17rem;
+  }
+  .v-journal-main .commentary {
+    columns: 2;
+    column-gap: 2.5rem;
+  }
+  .v-journal-main .commentary p {
+    break-inside: avoid;
+  }
+}
+.v-journal-main > .section-label {
+  margin-top: 2.5rem;
+}
+.v-journal-main > .section-label:first-child {
+  margin-top: 0;
+}
+.v-journal-figure {
+  margin: 2.5rem 0;
+}
+.v-journal-art {
+  aspect-ratio: 3 / 2;
+}
+.v-journal-figure figcaption {
+  font-size: 0.78rem;
+  color: var(--muted-foreground);
+  padding-top: 0.6rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.6rem;
+}
+.v-journal-side {
+  display: grid;
+  gap: 1.5rem;
+  align-content: start;
+}
+.v-journal-box {
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--hx-wash);
+}
+
+/* ==================================================================
+   レイアウト 5: overlay — 絵の上に札を重ねる
+   ================================================================== */
+.v-overlay-stage {
+  position: relative;
+  isolation: isolate;
+}
+.v-overlay-art {
+  height: min(82svh, 44rem);
+  object-fit: cover;
+  object-position: center;
+}
+.v-overlay-plate {
+  position: absolute;
+  inset-inline-start: clamp(1rem, 6vw, 5rem);
+  inset-block-end: clamp(1rem, 5vw, 3.5rem);
+  max-width: min(32rem, calc(100% - 2rem));
+  display: grid;
+  gap: 1.1rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--background) 88%, transparent);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--hx-edge);
+}
+.v-overlay-plate .gua {
+  color: var(--hx-accent);
+}
+.v-overlay-body {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: clamp(3.5rem, 9vw, 6rem) clamp(1.25rem, 4vw, 2.5rem) 0;
+  display: grid;
+  gap: 3.5rem;
+}
+.v-overlay-meta {
+  display: grid;
+  gap: 2.5rem;
+}
+
+/* ==================================================================
+   レイアウト 6: ledger — 台帳
+   ================================================================== */
+.v-ledger {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vw, 5rem) clamp(1rem, 4vw, 2.5rem) 0;
+}
+.v-ledger-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--foreground);
+}
+.v-ledger-table th,
+.v-ledger-table td {
+  border: 1px solid var(--border);
+  padding: 1rem 1.1rem;
+  vertical-align: top;
+  text-align: start;
+}
+.v-ledger-table th {
+  width: 6.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  background: var(--hx-wash);
+  white-space: nowrap;
+}
+.v-ledger-titlecell {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.v-ledger-titlecell .gua {
+  color: var(--hx-accent);
+}
+.v-ledger-mono {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 2.2;
+}
+.v-ledger-art {
+  aspect-ratio: 21 / 9;
+}
+.v-ledger-title td {
+  background: var(--hx-wash);
+}
+
+/* ==================================================================
+   レイアウト 7: grid — 区画を敷き詰める
+   ================================================================== */
+.v-grid {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 2rem) 0;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(6, 1fr);
+}
+.v-grid-cell {
+  padding: clamp(1.1rem, 2.5vw, 1.75rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--background);
+}
+.v-grid-name {
+  grid-column: span 6;
+  background: var(--hx-wash);
+  border-color: var(--hx-edge);
+}
+.v-grid-gua {
+  grid-column: span 2;
+  display: grid;
+  place-items: center;
+  color: var(--hx-accent);
+}
+.v-grid-art {
+  grid-column: span 4;
+  padding: 0;
+  overflow: hidden;
+}
+.v-grid-art img {
+  height: 100%;
+  aspect-ratio: 16 / 9;
+}
+.v-grid-summary {
+  grid-column: span 6;
+  display: grid;
+  gap: 1rem;
+}
+.v-grid-judgment {
+  grid-column: span 3;
+}
+.v-grid-trigrams {
+  grid-column: span 3;
+}
+.v-grid-commentary {
+  grid-column: span 4;
+}
+.v-grid-relations {
+  grid-column: span 2;
+}
+@media (width < 56rem) {
+  .v-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .v-grid-cell {
+    grid-column: span 2 !important;
+  }
+  .v-grid-art img {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* ==================================================================
+   レイアウト 8: orbit — 中心の卦象をめぐる配置
+   ================================================================== */
+.v-orbit {
+  padding-top: clamp(2rem, 5vw, 4rem);
+}
+.v-orbit-core {
+  position: relative;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: clamp(1rem, 4vw, 2.5rem);
+  display: grid;
+  gap: 1.5rem;
+}
+.v-orbit-center {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 1.25rem;
+  order: -1;
+}
+.v-orbit-center .gua {
+  color: var(--hx-accent);
+}
+.v-orbit-satellite {
+  text-align: center;
+}
+.v-orbit-satellite .keyword-list {
+  justify-content: center;
+}
+.v-orbit-ring {
+  display: none;
+}
+@media (width >= 62rem) {
+  .v-orbit-core {
+    grid-template-columns: 1fr minmax(20rem, 26rem) 1fr;
+    grid-template-rows: auto auto auto;
+    align-items: center;
+    gap: 2.5rem 3rem;
+    padding-block: 4rem;
+  }
+  .v-orbit-ring {
+    display: block;
+    position: absolute;
+    inset: 2rem;
+    margin: auto;
+    width: min(38rem, 80%);
+    aspect-ratio: 1;
+    border: 1px dashed var(--hx-edge);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .v-orbit-center {
+    grid-column: 2;
+    grid-row: 2;
+    order: 0;
+  }
+  .v-orbit-n {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .v-orbit-s {
+    grid-column: 2;
+    grid-row: 3;
+  }
+  .v-orbit-w {
+    grid-column: 1;
+    grid-row: 2;
+    text-align: start;
+  }
+  .v-orbit-e {
+    grid-column: 3;
+    grid-row: 2;
+    text-align: start;
+  }
+}
+.v-orbit-art {
+  max-width: 64rem;
+  margin: clamp(2rem, 5vw, 4rem) auto 0;
+  aspect-ratio: 2 / 1;
+}
+.v-orbit-body {
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 5rem) 1.5rem 0;
+  display: grid;
+  gap: 3.5rem;
+}
+
+/* ==================================================================
+   レイアウト 9: poster — 卦名を画面いっぱいに
+   ================================================================== */
+.v-poster-head {
+  padding: clamp(2.5rem, 7vw, 5rem) clamp(1rem, 4vw, 2.5rem) 1.5rem;
+}
+.v-poster-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(3rem, 17vw, 12rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  margin: 0;
+  /* 巨大な文字は色相によって原色に見えるので、地の色に寄せて落ち着かせる */
+  color: color-mix(in oklab, var(--hx-accent) 42%, var(--foreground));
+  overflow-wrap: anywhere;
+}
+.v-poster-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  margin-top: 1.5rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  color: var(--muted-foreground);
+}
+.v-poster-english {
+  font-style: italic;
+  letter-spacing: 0.08em;
+}
+.v-poster-band {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  flex-wrap: wrap;
+  padding: 0 clamp(1rem, 4vw, 2.5rem) 2.5rem;
+}
+.v-poster-band .gua {
+  color: var(--hx-accent);
+}
+.v-poster-band .summary-line {
+  flex: 1 1 18rem;
+}
+.v-poster-art {
+  aspect-ratio: 21 / 9;
+}
+.v-poster-body {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 4vw, 2.5rem) 0;
+  display: grid;
+  gap: 3rem;
+}
+@media (width >= 58rem) {
+  .v-poster-body {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .v-poster-commentary {
+    grid-row: span 2;
+  }
+}
+
+/* ==================================================================
+   レイアウト 10: diagonal — 斜めの帯
+   ================================================================== */
+.v-diagonal-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 3rem) clamp(5rem, 12vw,
+    9rem);
+}
+.v-diagonal-slab {
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 130%;
+  background: linear-gradient(105deg, var(--hx-wash) 0%, var(--hx-wash-alt)
+    100%);
+  transform: rotate(-6deg);
+  transform-origin: top left;
+}
+.v-diagonal-head {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  flex-wrap: wrap;
+  transform: rotate(-2deg);
+}
+.v-diagonal-head .gua {
+  color: var(--hx-accent);
+}
+.v-diagonal-art {
+  position: relative;
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  transform: rotate(1.5deg);
+  box-shadow: 0 18px 40px -24px oklch(0 0 0 / 0.5);
+}
+.v-diagonal-body {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+  display: grid;
+  gap: 3rem;
+}
+.v-diagonal-meta {
+  display: grid;
+  gap: 2.5rem;
+}
+
+/* ==================================================================
+   レイアウト 11: duotone — 二色刷り
+   ================================================================== */
+.v-duotone-upper,
+.v-duotone-lower {
+  padding: clamp(2rem, 6vw, 4.5rem) clamp(1.25rem, 5vw, 4rem);
+}
+.v-duotone-upper {
+  background: var(--hx-wash);
+  display: grid;
+  gap: 1.25rem;
+  align-content: center;
+}
+.v-duotone-lower {
+  /* 上卦と下卦の色相が近い卦でも二色に見えるよう、下側は明暗を反転させる */
+  background: oklch(0.26 0.06 var(--hx-lower));
+  color: oklch(0.95 0.02 var(--hx-lower));
+  padding-block: clamp(1.5rem, 4vw, 3rem);
+  display: grid;
+  align-content: center;
+  gap: 1.25rem;
+}
+.dark .v-duotone-lower {
+  background: oklch(0.94 0.04 var(--hx-lower));
+  color: oklch(0.24 0.04 var(--hx-lower));
+}
+.v-duotone-lower .v-duotone-tag {
+  color: inherit;
+  opacity: 0.72;
+}
+.v-duotone-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+.v-duotone-head {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+}
+.v-duotone-head .gua {
+  color: var(--hx-accent);
+}
+.v-duotone-art {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+}
+@media (width >= 62rem) {
+  .v-duotone {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .v-duotone-body {
+    grid-column: span 2;
+  }
+}
+.v-duotone-body {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 5rem) clamp(1.25rem, 4vw, 2.5rem) 0;
+  display: grid;
+  gap: 3.25rem;
+}
+
+/* ==================================================================
+   レイアウト 12: frame — 表装
+   ================================================================== */
+.v-frame {
+  padding: clamp(1rem, 3vw, 2.5rem);
+}
+.v-frame-mount {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: clamp(0.75rem, 2.5vw, 1.75rem);
+  border: 1px solid var(--hx-edge);
+  background: linear-gradient(160deg, var(--hx-wash), var(--hx-wash-alt));
+  border-radius: 2px;
+}
+.v-frame-inner {
+  padding: clamp(1.75rem, 5vw, 3.5rem);
+  background: var(--background);
+  border: 1px solid var(--hx-edge);
+  display: grid;
+  gap: 2.75rem;
+}
+.v-frame-head {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--hx-edge);
+}
+.v-frame-head .gua {
+  color: var(--hx-accent);
+}
+.v-frame-art {
+  aspect-ratio: 4 / 3;
+}
+.v-frame-summary {
+  text-align: center;
+}
+
+/* ==================================================================
+   レイアウト 13: scroll — 横へ送る巻物
+   ================================================================== */
+.v-scroll {
+  padding-top: clamp(1.5rem, 4vw, 3rem);
+}
+.v-scroll-hint {
+  margin: 0 clamp(1rem, 4vw, 2.5rem) 1rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  color: var(--muted-foreground);
+}
+.v-scroll-rail {
+  display: flex;
+  gap: 1px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  background: var(--border);
+  border-block: 1px solid var(--border);
+  overscroll-behavior-x: contain;
+}
+.v-scroll-panel {
+  flex: none;
+  width: min(28rem, 86vw);
+  scroll-snap-align: start;
+  padding: clamp(1.75rem, 4vw, 3rem);
+  background: var(--background);
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+}
+.v-scroll-title {
+  background: var(--hx-wash);
+}
+.v-scroll-title .gua {
+  color: var(--hx-accent);
+}
+.v-scroll-image {
+  padding: 0;
+  width: min(24rem, 80vw);
+}
+.v-scroll-art {
+  height: 100%;
+  object-fit: cover;
+}
+.v-scroll-prose p {
+  line-height: 2.1;
+  margin: 0;
+}
+.v-scroll-gap {
+  margin-top: 1.25rem;
+}
+
+/* ==================================================================
+   レイアウト 14: terminal — 等幅の画面
+   ================================================================== */
+.v-terminal {
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 2.5rem) 0;
+}
+.v-terminal-window {
+  max-width: 56rem;
+  margin: 0 auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--card);
+}
+.v-terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--muted);
+}
+.v-terminal-dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--border);
+}
+.v-terminal-path {
+  margin-inline-start: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted-foreground);
+}
+.v-terminal-body {
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+}
+.v-terminal-body .commentary p,
+.v-terminal-body .judgment-gloss {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 2;
+}
+.v-terminal-line {
+  margin: 2rem 0 0.9rem;
+  font-size: 0.78rem;
+  color: var(--muted-foreground);
+}
+.v-terminal-line:first-child {
+  margin-top: 0;
+}
+.v-terminal-prompt {
+  color: var(--hx-accent);
+  margin-inline-end: 0.5rem;
+}
+.v-terminal-id {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+.v-terminal-id .gua {
+  color: var(--hx-accent);
+}
+.v-terminal-name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+.v-terminal-sub {
+  margin: 0.3rem 0 0;
+  font-size: 0.74rem;
+  color: var(--muted-foreground);
+}
+.v-terminal-out {
+  margin: 1.25rem 0 0;
+  padding: 1rem 1.1rem;
+  background: var(--muted);
+  border-radius: var(--radius);
+  font-size: 0.76rem;
+  line-height: 2;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+.v-terminal-art {
+  aspect-ratio: 2 / 1;
+  border-radius: var(--radius);
+}
+
+/* ==================================================================
+   レイアウト 15: zen — 縦書きと円相
+   ================================================================== */
+.v-zen-stage {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 2rem;
+  padding: clamp(3rem, 9vw, 6rem) 1.5rem clamp(2rem, 6vw, 4rem);
+}
+.v-zen-enso {
+  position: absolute;
+  top: clamp(2rem, 7vw, 5rem);
+  width: min(26rem, 74vw);
+  aspect-ratio: 1;
+  border: 2px solid var(--hx-edge);
+  border-radius: 50%;
+  border-inline-end-color: transparent;
+  transform: rotate(-24deg);
+  pointer-events: none;
+}
+.v-zen-vertical {
+  position: relative;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  display: flex;
+  /* 縦書きでは row が縦方向になるので、列を横に並べるには column を使う */
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  max-height: min(26rem, 62svh);
+}
+.v-zen-name {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 7vw, 3.4rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  margin: 0;
+}
+.v-zen-summary {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  line-height: 2.1;
+  margin: 0;
+  color: var(--muted-foreground);
+}
+.v-zen-mark {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+.v-zen-mark .gua {
+  color: var(--hx-accent);
+}
+.v-zen-n,
+.v-zen-reading {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  color: var(--muted-foreground);
+}
+.v-zen-body {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vw, 4.5rem) 1.5rem 0;
+  display: grid;
+  gap: 3.25rem;
+}
+.v-zen-art {
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+}
+
+/* ==================================================================
+   レイアウト 16: stack — 札を重ねる
+   ================================================================== */
+.v-stack {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vw, 5rem) clamp(1rem, 4vw, 2rem) 0;
+  display: grid;
+}
+.v-stack-card {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--background);
+  box-shadow: 0 12px 30px -26px oklch(0 0 0 / 0.55);
+  display: grid;
+  gap: 1.1rem;
+  margin-bottom: -1rem;
+}
+.v-stack-card:last-child {
+  margin-bottom: 0;
+}
+.v-stack-1 {
+  background: var(--hx-wash);
+  border-color: var(--hx-edge);
+}
+.v-stack-1 .gua {
+  color: var(--hx-accent);
+}
+.v-stack-2 {
+  padding: 0.5rem;
+}
+.v-stack-art {
+  aspect-ratio: 16 / 9;
+  border-radius: calc(var(--radius) - 2px);
+}
+.v-stack-gap {
+  margin-top: 1rem;
+}
+@media (width >= 48rem) {
+  .v-stack-1 {
+    margin-inline-end: 2.5rem;
+  }
+  .v-stack-2 {
+    margin-inline-start: 2.5rem;
+  }
+  .v-stack-3 {
+    margin-inline-end: 1.5rem;
+  }
+  .v-stack-4 {
+    margin-inline-start: 1.5rem;
+  }
+}

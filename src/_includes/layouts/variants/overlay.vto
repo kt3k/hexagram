@@ -1,0 +1,36 @@
+---
+layout: layouts/base.vto
+---
+{{# 絵を全面に敷き、その上に半透明の札を重ねる #}}
+<article class="v-overlay">
+  <div class="v-overlay-stage">
+    {{ comp.art({ hexagram, eager: true, modifier: "v-overlay-art" }) }}
+    <div class="v-overlay-plate">
+      {{ comp.gua({ hexagram, size: "lg" }) }}
+      {{ comp.nameplate({ hexagram, size: "lg", showEnglish: true }) }}
+      <p class="summary-line">{{ hexagram.summary }}</p>
+      {{ comp.keywords({ hexagram }) }}
+    </div>
+  </div>
+
+  <div class="v-overlay-body">
+    <section class="v-overlay-judgment">
+      <p class="section-label">卦辞</p>
+      {{ comp.judgment({ hexagram }) }}
+    </section>
+    <section>
+      <p class="section-label">解説</p>
+      {{ comp.commentary({ hexagram }) }}
+    </section>
+    <div class="v-overlay-meta">
+      <section>
+        <p class="section-label">卦の成り立ち</p>
+        {{ comp.trigrams({ hexagram }) }}
+      </section>
+      <section>
+        <p class="section-label">関連する卦</p>
+        {{ comp.relations({ hexagram, all: hexagrams }) }}
+      </section>
+    </div>
+  </div>
+</article>

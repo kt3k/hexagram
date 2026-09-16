@@ -1,0 +1,39 @@
+---
+layout: layouts/base.vto
+---
+{{# 上卦の色と下卦の色で画面を二色に刷り分ける #}}
+<article class="v-duotone">
+  <div class="v-duotone-upper">
+    <p class="v-duotone-tag">上卦 {{ hexagram.upper.kanji }}（{{ hexagram.upper.image }}）</p>
+    <div class="v-duotone-head">
+      {{ comp.gua({ hexagram, size: "lg" }) }}
+      {{ comp.nameplate({ hexagram, size: "lg", showEnglish: true }) }}
+    </div>
+    <p class="summary-line">{{ hexagram.summary }}</p>
+    {{ comp.keywords({ hexagram }) }}
+  </div>
+
+  <div class="v-duotone-lower">
+    <p class="v-duotone-tag">下卦 {{ hexagram.lower.kanji }}（{{ hexagram.lower.image }}）</p>
+    {{ comp.art({ hexagram, eager: true, modifier: "v-duotone-art" }) }}
+  </div>
+
+  <div class="v-duotone-body">
+    <section>
+      <p class="section-label">卦辞</p>
+      {{ comp.judgment({ hexagram }) }}
+    </section>
+    <section>
+      <p class="section-label">解説</p>
+      {{ comp.commentary({ hexagram }) }}
+    </section>
+    <section>
+      <p class="section-label">卦の成り立ち</p>
+      {{ comp.trigrams({ hexagram }) }}
+    </section>
+    <section>
+      <p class="section-label">関連する卦</p>
+      {{ comp.relations({ hexagram, all: hexagrams }) }}
+    </section>
+  </div>
+</article>

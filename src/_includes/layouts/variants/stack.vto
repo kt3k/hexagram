@@ -1,0 +1,33 @@
+---
+layout: layouts/base.vto
+---
+{{# 札を少しずつずらして重ね、上から順にめくるように読ませる #}}
+<article class="v-stack">
+  <div class="v-stack-card v-stack-1">
+    {{ comp.gua({ hexagram, size: "lg" }) }}
+    {{ comp.nameplate({ hexagram, size: "lg", showEnglish: true }) }}
+    <p class="summary-line">{{ hexagram.summary }}</p>
+    {{ comp.keywords({ hexagram }) }}
+  </div>
+
+  <div class="v-stack-card v-stack-2">
+    {{ comp.art({ hexagram, eager: true, modifier: "v-stack-art" }) }}
+  </div>
+
+  <div class="v-stack-card v-stack-3">
+    <p class="section-label">卦辞</p>
+    {{ comp.judgment({ hexagram }) }}
+  </div>
+
+  <div class="v-stack-card v-stack-4">
+    <p class="section-label">解説</p>
+    {{ comp.commentary({ hexagram }) }}
+  </div>
+
+  <div class="v-stack-card v-stack-5">
+    <p class="section-label">卦の成り立ち</p>
+    {{ comp.trigrams({ hexagram }) }}
+    <p class="section-label v-stack-gap">関連する卦</p>
+    {{ comp.relations({ hexagram, all: hexagrams }) }}
+  </div>
+</article>

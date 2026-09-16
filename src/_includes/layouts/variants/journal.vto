@@ -1,0 +1,44 @@
+---
+layout: layouts/base.vto
+---
+{{# 雑誌の見開きのように、罫線と段組みで組む #}}
+<article class="v-journal">
+  <header class="v-journal-masthead">
+    <div class="v-journal-masthead-main">
+      {{ comp.nameplate({ hexagram, size: "lg", showEnglish: true }) }}
+    </div>
+    {{ comp.gua({ hexagram, size: "lg" }) }}
+  </header>
+
+  <p class="v-journal-standfirst">{{ hexagram.summary }}</p>
+
+  <div class="v-journal-rule"></div>
+
+  <div class="v-journal-columns">
+    <div class="v-journal-main">
+      <p class="section-label">卦辞</p>
+      {{ comp.judgment({ hexagram }) }}
+      <figure class="v-journal-figure">
+        {{ comp.art({ hexagram, modifier: "v-journal-art" }) }}
+        <figcaption>{{ hexagram.upper.image }}の下に{{ hexagram.lower.image }}。{{ hexagram.name }}の象。</figcaption>
+      </figure>
+      <p class="section-label">解説</p>
+      {{ comp.commentary({ hexagram }) }}
+    </div>
+
+    <aside class="v-journal-side">
+      <div class="v-journal-box">
+        <p class="section-label">要目</p>
+        {{ comp.keywords({ hexagram, variant: "outline" }) }}
+      </div>
+      <div class="v-journal-box">
+        <p class="section-label">卦の成り立ち</p>
+        {{ comp.trigrams({ hexagram }) }}
+      </div>
+      <div class="v-journal-box">
+        <p class="section-label">関連する卦</p>
+        {{ comp.relations({ hexagram, all: hexagrams }) }}
+      </div>
+    </aside>
+  </div>
+</article>

@@ -1,0 +1,17 @@
+{{# 錯卦・綜卦・互卦への案内。all には全 64 卦を渡す #}}
+<ul class="relations">
+  {{ for rel of [
+    { label: "錯卦", n: hexagram.opposite, note: "全爻を反転" },
+    { label: "綜卦", n: hexagram.inverse, note: "上下を逆に" },
+    { label: "互卦", n: hexagram.nuclear, note: "二〜五爻" }
+  ] }}
+    <li>
+      <a class="relation" href="{{ all[rel.n - 1].url }}">
+        <span class="relation-label">{{ rel.label }}</span>
+        <span class="relation-glyph">{{ all[rel.n - 1].glyph }}</span>
+        <span class="relation-name">{{ all[rel.n - 1].name }}</span>
+        <span class="relation-note">{{ rel.note }}</span>
+      </a>
+    </li>
+  {{ /for }}
+</ul>

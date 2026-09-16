@@ -16,6 +16,7 @@ site.use(basePath());
 site.use(sitemap());
 
 site.add("styles.css");
+site.add("favicon.svg");
 site.add("img");
 site.add("js");
 

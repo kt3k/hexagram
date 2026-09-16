@@ -39,7 +39,10 @@ jobs:
       - name: サイトを組み立てる
         run: deno task build
 
+      # Pages がまだ有効でなければ、この手順で有効にする
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="1000" height="1250" role="img" aria-label="水天需のイメージ">
+  <title>水天需（第5卦 ䷄）</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="oklch(0.92 0.02 250)"/>
+      <stop offset="100%" stop-color="oklch(0.92 0.03 85)"/>
+    </linearGradient>
+    <linearGradient id="fadeDown" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="30.9%" stop-color="#fff"/>
+      <stop offset="39.84%" stop-color="#000"/>
+    </linearGradient>
+    <linearGradient id="fadeUp" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="30.9%" stop-color="#000"/>
+      <stop offset="39.84%" stop-color="#fff"/>
+    </linearGradient>
+    <mask id="maskUpper"><rect width="1000" height="1250" fill="url(#fadeDown)"/></mask>
+    <mask id="maskLower"><rect width="1000" height="1250" fill="url(#fadeUp)"/></mask>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="5"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <clipPath id="frame"><rect width="1000" height="1250"/></clipPath>
+  </defs>
+  <rect width="1000" height="1250" fill="url(#bg)"/>
+  <g clip-path="url(#frame)">
+    <g mask="url(#maskUpper)">
+<path d="M 0 1.92 Q 52.81 -7.78 105.61 1.92 Q 158.42 11.62 211.22 1.92 Q 264.03 -7.78 316.83 1.92 Q 369.64 11.62 422.45 1.92 Q 475.25 -7.78 528.06 1.92 Q 580.86 11.62 633.67 1.92 Q 686.47 -7.78 739.28 1.92 Q 792.09 11.62 844.89 1.92 Q 897.7 -7.78 950.5 1.92 Q 1003.31 11.62 1000 1.92" fill="none" stroke="oklch(0.58 0.19 250)" stroke-width="2.73" opacity="0.55"/>
+<path d="M 0 36.83 Q 47.14 10.92 94.27 36.83 Q 141.41 62.74 188.55 36.83 Q 235.69 10.92 282.82 36.83 Q 329.96 62.74 377.1 36.83 Q 424.24 10.92 471.37 36.83 Q 518.51 62.74 565.65 36.83 Q 612.79 10.92 659.92 36.83 Q 707.06 62.74 754.2 36.83 Q 801.34 10.92 848.47 36.83 Q 895.61 62.74 942.75 36.83 Q 989.89 10.92 1000 36.83" fill="none" stroke="oklch(0.38 0.14 250)" stroke-width="2.37" opacity="0.55"/>
+<path d="M 0 67.66 Q 100.12 40.61 200.24 67.66 Q 300.36 94.7 400.48 67.66 Q 500.6 40.61 600.72 67.66 Q 700.84 94.7 800.95 67.66 Q 901.07 40.61 1000 67.66" fill="none" stroke="oklch(0.38 0.14 250)" stroke-width="0.96" opacity="0.15"/>
+<path d="M 0 96.8 Q 107.67 71.79 215.34 96.8 Q 323.01 121.8 430.68 96.8 Q 538.35 71.79 646.02 96.8 Q 753.69 121.8 861.36 96.8 Q 969.04 71.79 1000 96.8" fill="none" stroke="oklch(0.38 0.14 250)" stroke-width="2.24" opacity="0.42"/>
+<path d="M 0 124.49 Q 66.14 103.88 132.28 124.49 Q 198.42 145.1 264.56 124.49 Q 330.7 103.88 396.84 124.49 Q 462.98 145.1 529.12 124.49 Q 595.26 103.88 661.4 124.49 Q 727.54 145.1 793.68 124.49 Q 859.82 103.88 925.96 124.49 Q 992.1 103.88 1000 124.49" fill="none" stroke="oklch(0.38 0.14 250)" stroke-width="2.7" opacity="0.18"/>
+<path d="M 0 157.13 Q 48.59 144.09 97.19 157.13 Q 145.78 170.17 194.38 157.13 Q 242.97 144.09 291.57 157.13 Q 340.16 170.17 388.75 157.13 Q 437.35 144.09 485.94 157.13 Q 534.54 170.17 583.13 157.13 Q 631.72 144.09 680.32 157.13 Q 728.91 144.09 777.51 157.13 Q 826.1 144.09 874.7 157.13 Q 923.29 170.17 971.88 157.13 Q 1020.48 144.09 1000 157.13" fill="none" stroke="oklch(0.58 0.19 250)" stroke-width="0.87" opacity="0.22"/>
+<path d="M 0 190.38 Q 63.52 153.92 127.04 190.38 Q 190.56 226.83 254.07 190.38 Q 317.59 153.92 381.11 190.38 Q 444.63 226.83 508.15 190.38 Q 571.67 153.92 635.19 190.38 Q 698.7 226.83 762.22 190.38 Q 825.74 226.83 889.26 190.38 Q 952.78 153.92 1000 190.38" fill="none" stroke="oklch(0.38 0.14 250)" stroke-width="1.58" opacity="0.27"/>
+<path d="M 0 223.4 Q 59.71 193.16 119.42 223.4 Q 179.13 253.64 238.84 223.4 Q 298.55 193.16 358.26 223.4 Q 417.97 253.64 477.68 223.4 Q 537.39 193.16 597.1 223.4 Q 656.81 253.64 716.52 223.4 Q 776.23 253.64 835.94 223.4 Q 895.65 193.16 955.36 223.4 Q 1015.07 253.64 1000 223.4" fill="none" stroke="oklch(0.38 0.14 250)" stroke-width="1.58" opacity="0.33"/>
+<path d="M 0 250 Q 63.4 221.8 126.79 250 Q 190.19 278.2 253.58 250 Q 316.98 221.8 380.37 250 Q 443.77 278.2 507.16 250 Q 570.56 221.8 633.96 250 Q 697.35 278.2 760.75 250 Q 824.14 221.8 887.54 250 Q 950.93 278.2 1000 250" fill="none" stroke="oklch(0.38 0.14 250)" stroke-width="2.87" opacity="0.37"/>
+<path d="M 0 280.74 Q 67.73 273.03 135.45 280.74 Q 203.18 288.45 270.9 280.74 Q 338.63 273.03 406.36 280.74 Q 474.08 288.45 541.81 280.74 Q 609.53 273.03 677.26 280.74 Q 744.99 288.45 812.71 280.74 Q 880.44 273.03 948.16 280.74 Q 1015.89 273.03 1000 280.74" fill="none" stroke="oklch(0.38 0.14 250)" stroke-width="2.03" opacity="0.27"/>
+<path d="M 0 315.04 Q 94.47 278.83 188.95 315.04 Q 283.42 351.25 377.89 315.04 Q 472.36 278.83 566.84 315.04 Q 661.31 351.25 755.78 315.04 Q 850.25 278.83 944.73 315.04 Q 1039.2 351.25 1000 315.04" fill="none" stroke="oklch(0.58 0.19 250)" stroke-width="1.5" opacity="0.56"/>
+<path d="M 0 345.79 Q 66 316.51 132 345.79 Q 198 375.07 264 345.79 Q 330 316.51 396 345.79 Q 462 375.07 528 345.79 Q 594 316.51 660 345.79 Q 726 375.07 792 345.79 Q 858 316.51 924 345.79 Q 990 316.51 1000 345.79" fill="none" stroke="oklch(0.38 0.14 250)" stroke-width="1.47" opacity="0.46"/>
+<path d="M 0 375.76 Q 42.07 367.58 84.14 375.76 Q 126.21 383.95 168.28 375.76 Q 210.34 367.58 252.41 375.76 Q 294.48 383.95 336.55 375.76 Q 378.62 367.58 420.69 375.76 Q 462.76 383.95 504.83 375.76 Q 546.9 367.58 588.97 375.76 Q 631.03 367.58 673.1 375.76 Q 715.17 367.58 757.24 375.76 Q 799.31 383.95 841.38 375.76 Q 883.45 367.58 925.52 375.76 Q 967.59 383.95 1000 375.76" fill="none" stroke="oklch(0.38 0.14 250)" stroke-width="1.56" opacity="0.34"/>
+<path d="M 0 407.01 Q 43.06 399.5 86.11 407.01 Q 129.17 414.51 172.23 407.01 Q 215.29 399.5 258.34 407.01 Q 301.4 414.51 344.46 407.01 Q 387.51 399.5 430.57 407.01 Q 473.63 414.51 516.68 407.01 Q 559.74 399.5 602.8 407.01 Q 645.86 414.51 688.91 407.01 Q 731.97 399.5 775.03 407.01 Q 818.08 414.51 861.14 407.01 Q 904.2 399.5 947.25 407.01 Q 990.31 414.51 1000 407.01" fill="none" stroke="oklch(0.38 0.14 250)" stroke-width="2.95" opacity="0.55"/>
+<path d="M 0 437.26 Q 93.72 402.04 187.45 437.26 Q 281.17 472.47 374.9 437.26 Q 468.62 402.04 562.34 437.26 Q 656.07 472.47 749.79 437.26 Q 843.51 402.04 937.24 437.26 Q 1030.96 472.47 1000 437.26" fill="none" stroke="oklch(0.38 0.14 250)" stroke-width="1.32" opacity="0.53"/>
+<path d="M 0 467.83 Q 87.49 429.04 174.98 467.83 Q 262.47 506.62 349.96 467.83 Q 437.45 429.04 524.94 467.83 Q 612.43 506.62 699.93 467.83 Q 787.42 429.04 874.91 467.83 Q 962.4 506.62 1000 467.83" fill="none" stroke="oklch(0.58 0.19 250)" stroke-width="3.02" opacity="0.46"/>
+    </g>
+    <g mask="url(#maskLower)">
+<circle cx="500" cy="840.55" r="101.01" fill="none" stroke="oklch(0.58 0.19 85)" stroke-width="1.96" opacity="0.41"/>
+<circle cx="500" cy="840.55" r="202.02" fill="none" stroke="oklch(0.38 0.14 85)" stroke-width="1.18" opacity="0.31"/>
+<circle cx="500" cy="840.55" r="303.03" fill="none" stroke="oklch(0.38 0.14 85)" stroke-width="1.61" opacity="0.41"/>
+<circle cx="500" cy="840.55" r="404.04" fill="none" stroke="oklch(0.58 0.19 85)" stroke-width="1.31" opacity="0.26"/>
+<circle cx="500" cy="840.55" r="505.05" fill="none" stroke="oklch(0.38 0.14 85)" stroke-width="2.69" opacity="0.48"/>
+<circle cx="500" cy="840.55" r="606.06" fill="none" stroke="oklch(0.38 0.14 85)" stroke-width="1.58" opacity="0.49"/>
+<circle cx="500" cy="840.55" r="707.07" fill="none" stroke="oklch(0.58 0.19 85)" stroke-width="1.79" opacity="0.56"/>
+<circle cx="500" cy="840.55" r="808.08" fill="none" stroke="oklch(0.38 0.14 85)" stroke-width="1.74" opacity="0.26"/>
+<circle cx="500" cy="840.55" r="909.09" fill="none" stroke="oklch(0.38 0.14 85)" stroke-width="2.31" opacity="0.25"/>
+<line x1="620" y1="841.41" x2="1354.49" y2="846.62" stroke="oklch(0.38 0.14 85)" stroke-width="1.13" opacity="0.14"/>
+<line x1="612.65" y1="881.91" x2="1039.73" y2="1038.72" stroke="oklch(0.38 0.14 85)" stroke-width="0.82" opacity="0.37"/>
+<line x1="592.29" y1="917.26" x2="1081.4" y2="1323.79" stroke="oklch(0.38 0.14 85)" stroke-width="0.5" opacity="0.26"/>
+<line x1="567.73" y1="939.61" x2="1044.78" y2="1637.33" stroke="oklch(0.38 0.14 85)" stroke-width="1.29" opacity="0.18"/>
+<line x1="535.51" y1="955.18" x2="667.99" y2="1382.9" stroke="oklch(0.38 0.14 85)" stroke-width="0.61" opacity="0.37"/>
+<line x1="497.18" y1="960.52" x2="480.23" y2="1682.53" stroke="oklch(0.38 0.14 85)" stroke-width="0.84" opacity="0.39"/>
+<line x1="454.3" y1="951.51" x2="229.99" y2="1496.1" stroke="oklch(0.38 0.14 85)" stroke-width="0.94" opacity="0.37"/>
+<line x1="421.19" y1="931.05" x2="15.44" y2="1396.94" stroke="oklch(0.38 0.14 85)" stroke-width="1.12" opacity="0.18"/>
+<line x1="396.8" y1="901.8" x2="24.31" y2="1122.86" stroke="oklch(0.38 0.14 85)" stroke-width="1.57" opacity="0.28"/>
+<line x1="385.04" y1="874.95" x2="-66.4" y2="1010.03" stroke="oklch(0.38 0.14 85)" stroke-width="0.57" opacity="0.39"/>
+<line x1="380.47" y1="829.99" x2="-226.86" y2="776.3" stroke="oklch(0.38 0.14 85)" stroke-width="0.98" opacity="0.14"/>
+<line x1="387.93" y1="797.65" x2="-391.67" y2="499.21" stroke="oklch(0.38 0.14 85)" stroke-width="1.39" opacity="0.38"/>
+<line x1="407.34" y1="764.3" x2="-20.73" y2="412.06" stroke="oklch(0.38 0.14 85)" stroke-width="1.18" opacity="0.19"/>
+<line x1="430.11" y1="743.01" x2="-4.77" y2="136.07" stroke="oklch(0.38 0.14 85)" stroke-width="1.3" opacity="0.14"/>
+<line x1="466" y1="725.47" x2="335.16" y2="282.64" stroke="oklch(0.38 0.14 85)" stroke-width="1.47" opacity="0.33"/>
+<line x1="503.42" y1="720.6" x2="517.15" y2="239.68" stroke="oklch(0.38 0.14 85)" stroke-width="1.51" opacity="0.2"/>
+<line x1="542.97" y1="728.51" x2="761.76" y2="158.03" stroke="oklch(0.38 0.14 85)" stroke-width="0.65" opacity="0.31"/>
+<line x1="577.58" y1="749.01" x2="1055.05" y2="185.61" stroke="oklch(0.38 0.14 85)" stroke-width="0.54" opacity="0.35"/>
+<line x1="601.43" y1="776.44" x2="1178.35" y2="411.77" stroke="oklch(0.38 0.14 85)" stroke-width="0.68" opacity="0.17"/>
+<line x1="614.37" y1="804.22" x2="1293.68" y2="588.39" stroke="oklch(0.38 0.14 85)" stroke-width="1" opacity="0.12"/>
+    </g>
+    <rect x="405.86" y="142.29" width="392.43" height="504.11" fill="none" stroke="oklch(0.25 0.02 90)" stroke-width="2" opacity="0.38"/>
+  </g>
+  <rect width="1000" height="1250" filter="url(#grain)" opacity="0.09" style="mix-blend-mode:overlay"/>
+</svg>

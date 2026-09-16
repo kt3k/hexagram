@@ -84,7 +84,7 @@ export const TRIGRAMS: Record<string, Trigram> = {
     attribute: "止まる・とどまる",
     family: "少男",
     direction: "北東",
-    hue: 120,
+    hue: 148,
   },
   "000": {
     bits: "000",
@@ -94,7 +94,7 @@ export const TRIGRAMS: Record<string, Trigram> = {
     attribute: "順う・受けいれる",
     family: "母",
     direction: "南西",
-    hue: 60,
+    hue: 72,
   },
 };
 

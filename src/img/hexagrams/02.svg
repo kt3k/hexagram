@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="1000" height="1250" role="img" aria-label="坤為地のイメージ">
+  <title>坤為地（第2卦 ䷁）</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="oklch(0.23 0.05 72)"/>
+      <stop offset="100%" stop-color="oklch(0.18 0.05 72)"/>
+    </linearGradient>
+    <linearGradient id="fadeDown" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="43.23%" stop-color="#fff"/>
+      <stop offset="56.67%" stop-color="#000"/>
+    </linearGradient>
+    <linearGradient id="fadeUp" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="43.23%" stop-color="#000"/>
+      <stop offset="56.67%" stop-color="#fff"/>
+    </linearGradient>
+    <mask id="maskUpper"><rect width="1000" height="1250" fill="url(#fadeDown)"/></mask>
+    <mask id="maskLower"><rect width="1000" height="1250" fill="url(#fadeUp)"/></mask>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="2"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <clipPath id="frame"><rect width="1000" height="1250"/></clipPath>
+  </defs>
+  <rect width="1000" height="1250" fill="url(#bg)"/>
+  <g clip-path="url(#frame)">
+    <g mask="url(#maskUpper)">
+<rect x="0" y="0" width="1000" height="14.83" fill="oklch(0.62 0.06 72)" opacity="0.25"/>
+<rect x="0" y="23.58" width="1000" height="16.11" fill="oklch(0.62 0.06 72)" opacity="0.32"/>
+<rect x="0" y="40.06" width="1000" height="157.2" fill="oklch(0.62 0.06 72)" opacity="0.16"/>
+<rect x="0" y="197.6" width="1000" height="29.62" fill="oklch(0.78 0.19 72)" opacity="0.23"/>
+<rect x="0" y="234.57" width="1000" height="30.4" fill="oklch(0.62 0.06 72)" opacity="0.26"/>
+<rect x="0" y="276.72" width="1000" height="128.89" fill="oklch(0.62 0.06 72)" opacity="0.1"/>
+<rect x="263.05" y="418.31" width="736.95" height="11.04" fill="oklch(0.62 0.06 72)" opacity="0.28"/>
+<rect x="0" y="431.94" width="1000" height="95.73" fill="oklch(0.62 0.06 72)" opacity="0.16"/>
+<rect x="0" y="537.97" width="1000" height="14.45" fill="oklch(0.62 0.06 72)" opacity="0.37"/>
+<rect x="0" y="566.28" width="1000" height="21.84" fill="oklch(0.62 0.06 72)" opacity="0.23"/>
+<rect x="0" y="594.71" width="1000" height="29.27" fill="oklch(0.62 0.06 72)" opacity="0.3"/>
+<rect x="0" y="636.33" width="1000" height="58.79" fill="oklch(0.62 0.06 72)" opacity="0.13"/>
+    </g>
+    <g mask="url(#maskLower)">
+<rect x="0" y="540.4" width="1000" height="30.2" fill="oklch(0.78 0.19 72)" opacity="0.29"/>
+<rect x="0" y="582.24" width="1000" height="24.11" fill="oklch(0.62 0.06 72)" opacity="0.39"/>
+<rect x="167.39" y="618.59" width="497.11" height="72.16" fill="oklch(0.62 0.06 72)" opacity="0.18"/>
+<rect x="88.9" y="702.98" width="400.12" height="12.74" fill="oklch(0.62 0.06 72)" opacity="0.24"/>
+<rect x="0" y="721.77" width="1000" height="16.57" fill="oklch(0.62 0.06 72)" opacity="0.43"/>
+<rect x="0" y="748.33" width="1000" height="19.06" fill="oklch(0.62 0.06 72)" opacity="0.23"/>
+<rect x="132.77" y="780.61" width="502.19" height="9.37" fill="oklch(0.62 0.06 72)" opacity="0.43"/>
+<rect x="259.11" y="792.74" width="459.73" height="68.62" fill="oklch(0.62 0.06 72)" opacity="0.13"/>
+<rect x="0" y="872.28" width="1000" height="16.93" fill="oklch(0.62 0.06 72)" opacity="0.34"/>
+<rect x="0" y="894.69" width="1000" height="27.34" fill="oklch(0.62 0.06 72)" opacity="0.32"/>
+<rect x="0" y="926.15" width="1000" height="81.48" fill="oklch(0.62 0.06 72)" opacity="0.16"/>
+<rect x="0" y="1014.33" width="1000" height="27.23" fill="oklch(0.62 0.06 72)" opacity="0.27"/>
+<rect x="239.59" y="1053.77" width="746.37" height="84.61" fill="oklch(0.62 0.06 72)" opacity="0.16"/>
+<rect x="0" y="1146.96" width="1000" height="12.51" fill="oklch(0.62 0.06 72)" opacity="0.37"/>
+<rect x="0" y="1166.67" width="1000" height="23.98" fill="oklch(0.62 0.06 72)" opacity="0.33"/>
+<rect x="0" y="1199.58" width="1000" height="25.78" fill="oklch(0.62 0.06 72)" opacity="0.18"/>
+<rect x="348.56" y="1234.61" width="651.44" height="157.24" fill="oklch(0.62 0.06 72)" opacity="0.15"/>
+    </g>
+    <rect x="165.21" y="255.72" width="453.75" height="538.14" fill="none" stroke="oklch(0.95 0.02 90)" stroke-width="2" opacity="0.5"/>
+  </g>
+  <rect width="1000" height="1250" filter="url(#grain)" opacity="0.12" style="mix-blend-mode:overlay"/>
+</svg>

@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="1000" height="1250" role="img" aria-label="火地晋のイメージ">
+  <title>火地晋（第35卦 ䷢）</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="oklch(0.94 0.02 35)"/>
+      <stop offset="100%" stop-color="oklch(0.91 0.03 72)"/>
+    </linearGradient>
+    <linearGradient id="fadeDown" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="35.81%" stop-color="#fff"/>
+      <stop offset="48.55%" stop-color="#000"/>
+    </linearGradient>
+    <linearGradient id="fadeUp" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="35.81%" stop-color="#000"/>
+      <stop offset="48.55%" stop-color="#fff"/>
+    </linearGradient>
+    <mask id="maskUpper"><rect width="1000" height="1250" fill="url(#fadeDown)"/></mask>
+    <mask id="maskLower"><rect width="1000" height="1250" fill="url(#fadeUp)"/></mask>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="35"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <clipPath id="frame"><rect width="1000" height="1250"/></clipPath>
+  </defs>
+  <rect width="1000" height="1250" fill="url(#bg)"/>
+  <g clip-path="url(#frame)">
+    <g mask="url(#maskUpper)">
+<path d="M 571.8 606.86 Q 564.25 312.75 584.38 72.12 Q 604.51 312.75 705.99 606.86 Z" fill="oklch(0.58 0.19 35)" opacity="0.19"/>
+<path d="M 543.46 606.86 Q 550.99 295.63 561.44 40.99 Q 571.89 295.63 613.12 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.26"/>
+<path d="M 207.59 606.86 Q 218.77 427.91 224.09 281.49 Q 229.4 427.91 243.01 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.33"/>
+<path d="M 330.93 606.86 Q 341.4 336.25 345.86 114.84 Q 350.33 336.25 360.71 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.15"/>
+<path d="M 790.08 606.86 Q 786.95 430.95 793.7 287.03 Q 800.45 430.95 835.09 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.13"/>
+<path d="M 674.18 606.86 Q 748.31 337.14 763.72 116.47 Q 779.12 337.14 776.88 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.13"/>
+<path d="M 326.7 606.86 Q 330.89 418.32 337.54 264.06 Q 344.18 418.32 371 606.86 Z" fill="oklch(0.58 0.19 35)" opacity="0.09"/>
+<path d="M 327.36 606.86 Q 373.09 417.89 386.8 263.28 Q 400.52 417.89 418.79 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.17"/>
+<path d="M 39.49 606.86 Q 121.66 329.12 138.14 101.88 Q 154.62 329.12 149.38 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.08"/>
+<path d="M 696.62 606.86 Q 751.71 382.22 767.46 198.43 Q 783.2 382.22 801.58 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.24"/>
+<path d="M 465.17 606.86 Q 462.12 361.62 467.53 160.96 Q 472.93 361.62 501.22 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.24"/>
+<path d="M 861.76 606.86 Q 899.09 373.72 907.46 182.97 Q 915.83 373.72 917.58 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.23"/>
+<path d="M 628.16 606.86 Q 667.44 320.13 678.98 85.54 Q 690.53 320.13 705.13 606.86 Z" fill="oklch(0.58 0.19 35)" opacity="0.21"/>
+<path d="M 879.54 606.86 Q 890.6 346.88 904.88 134.16 Q 919.17 346.88 974.78 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.12"/>
+<path d="M 652.35 606.86 Q 738.13 434.86 757.99 294.14 Q 777.85 434.86 784.74 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.23"/>
+<path d="M 888.83 606.86 Q 900.01 423.66 914.93 273.77 Q 929.85 423.66 988.31 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.24"/>
+<path d="M 566.46 606.86 Q 566.89 536.2 583.96 478.39 Q 601.04 536.2 680.27 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.08"/>
+<path d="M 898.22 606.86 Q 913.03 264.89 918.51 -14.9 Q 923.99 264.89 934.77 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.17"/>
+<path d="M 912.75 606.86 Q 923.69 529.84 936.82 466.83 Q 949.95 529.84 1000.29 606.86 Z" fill="oklch(0.58 0.19 35)" opacity="0.24"/>
+<path d="M 322.88 606.86 Q 363.55 463.32 381.34 345.87 Q 399.13 463.32 441.49 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.32"/>
+<path d="M 334.38 606.86 Q 330.51 453.06 342.91 327.22 Q 355.31 453.06 417.07 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.28"/>
+<path d="M 246.3 606.86 Q 282.1 437.17 299.77 298.32 Q 317.45 437.17 364.14 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.18"/>
+<path d="M 296.48 606.86 Q 317.91 335.6 324.28 113.66 Q 330.65 335.6 338.96 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.2"/>
+<path d="M 203.31 606.86 Q 305.52 363.8 325.31 164.93 Q 345.11 363.8 335.29 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.27"/>
+<path d="M 713.45 606.86 Q 740.78 436.44 746.36 297 Q 751.93 436.44 750.6 606.86 Z" fill="oklch(0.58 0.19 35)" opacity="0.25"/>
+<path d="M 477.18 606.86 Q 498.96 499.76 518.94 412.13 Q 538.93 499.76 610.44 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.14"/>
+<path d="M 58.68 606.86 Q 71.12 325.47 88.55 95.25 Q 105.98 325.47 174.91 606.86 Z" fill="oklch(0.55 0.06 35)" opacity="0.27"/>
+    </g>
+    <g mask="url(#maskLower)">
+<rect x="0" y="447.57" width="1000" height="188.24" fill="oklch(0.55 0.06 72)" opacity="0.21"/>
+<rect x="0" y="644.81" width="1000" height="27.29" fill="oklch(0.55 0.06 72)" opacity="0.25"/>
+<rect x="0" y="673.43" width="1000" height="8.26" fill="oklch(0.55 0.06 72)" opacity="0.39"/>
+<rect x="362.74" y="689.84" width="526.21" height="26.13" fill="oklch(0.55 0.06 72)" opacity="0.42"/>
+<rect x="0" y="731.42" width="1000" height="157.85" fill="oklch(0.55 0.06 72)" opacity="0.21"/>
+<rect x="0" y="895.69" width="1000" height="28.58" fill="oklch(0.55 0.06 72)" opacity="0.23"/>
+<rect x="0" y="926.09" width="1000" height="98.55" fill="oklch(0.58 0.19 72)" opacity="0.09"/>
+<rect x="0" y="1029.17" width="1000" height="92.59" fill="oklch(0.58 0.19 72)" opacity="0.08"/>
+<rect x="341.6" y="1128.8" width="658.4" height="9.71" fill="oklch(0.55 0.06 72)" opacity="0.2"/>
+<rect x="0" y="1138.83" width="1000" height="7.96" fill="oklch(0.55 0.06 72)" opacity="0.3"/>
+<rect x="0" y="1152.36" width="1000" height="11.28" fill="oklch(0.55 0.06 72)" opacity="0.29"/>
+<rect x="198.57" y="1170.92" width="549.81" height="17.71" fill="oklch(0.55 0.06 72)" opacity="0.2"/>
+<rect x="0" y="1195.32" width="1000" height="31.31" fill="oklch(0.55 0.06 72)" opacity="0.35"/>
+<rect x="0" y="1242.34" width="1000" height="70.03" fill="oklch(0.55 0.06 72)" opacity="0.17"/>
+    </g>
+    <rect x="192.9" y="451.78" width="405.37" height="431.73" fill="none" stroke="oklch(0.25 0.02 90)" stroke-width="2" opacity="0.38"/>
+  </g>
+  <rect width="1000" height="1250" filter="url(#grain)" opacity="0.09" style="mix-blend-mode:overlay"/>
+</svg>

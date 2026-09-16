@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="1000" height="1250" role="img" aria-label="山地剥のイメージ">
+  <title>山地剥（第23卦 ䷖）</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="oklch(0.24 0.05 148)"/>
+      <stop offset="100%" stop-color="oklch(0.18 0.05 72)"/>
+    </linearGradient>
+    <linearGradient id="fadeDown" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="34.64%" stop-color="#fff"/>
+      <stop offset="44.34%" stop-color="#000"/>
+    </linearGradient>
+    <linearGradient id="fadeUp" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="34.64%" stop-color="#000"/>
+      <stop offset="44.34%" stop-color="#fff"/>
+    </linearGradient>
+    <mask id="maskUpper"><rect width="1000" height="1250" fill="url(#fadeDown)"/></mask>
+    <mask id="maskLower"><rect width="1000" height="1250" fill="url(#fadeUp)"/></mask>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="23"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <clipPath id="frame"><rect width="1000" height="1250"/></clipPath>
+  </defs>
+  <rect width="1000" height="1250" fill="url(#bg)"/>
+  <g clip-path="url(#frame)">
+    <g mask="url(#maskUpper)">
+<path d="M 0 554.23 L -71.43 294.37 L 0 554.23 L 71.43 439.36 L 142.86 554.23 L 214.29 313.26 L 285.71 554.23 L 357.14 202.82 L 428.57 554.23 L 500 389.35 L 571.43 554.23 L 642.86 270.38 L 714.29 554.23 L 785.71 279.97 L 857.14 554.23 L 928.57 440.51 L 1000 554.23 L 1000 554.23 L 0 554.23 Z" fill="oklch(0.62 0.06 148)" opacity="0.14"/>
+<path d="M 0 498.81 L -83.33 200.28 L 0 498.81 L 83.33 397.81 L 166.67 498.81 L 250 234.3 L 333.33 498.81 L 416.67 344.28 L 500 498.81 L 583.33 353.88 L 666.67 498.81 L 750 308.14 L 833.33 498.81 L 916.67 182.82 L 1000 498.81 L 1000 554.23 L 0 554.23 Z" fill="oklch(0.62 0.06 148)" opacity="0.23"/>
+<path d="M 0 443.39 L -166.67 197.54 L 0 443.39 L 166.67 240.69 L 333.33 443.39 L 500 291.58 L 666.67 443.39 L 833.33 249.12 L 1000 443.39 L 1000 554.23 L 0 554.23 Z" fill="oklch(0.62 0.06 148)" opacity="0.31"/>
+<path d="M 0 387.96 L -83.33 253.27 L 0 387.96 L 83.33 277.45 L 166.67 387.96 L 250 238.33 L 333.33 387.96 L 416.67 234.15 L 500 387.96 L 583.33 273.75 L 666.67 387.96 L 750 271.87 L 833.33 387.96 L 916.67 242.37 L 1000 387.96 L 1000 554.23 L 0 554.23 Z" fill="oklch(0.62 0.06 148)" opacity="0.4"/>
+<path d="M 0 332.54 L -83.33 263.59 L 0 332.54 L 83.33 213.73 L 166.67 332.54 L 250 265.3 L 333.33 332.54 L 416.67 222.8 L 500 332.54 L 583.33 233.19 L 666.67 332.54 L 750 253.67 L 833.33 332.54 L 916.67 280.48 L 1000 332.54 L 1000 554.23 L 0 554.23 Z" fill="oklch(0.62 0.06 148)" opacity="0.48"/>
+    </g>
+    <g mask="url(#maskLower)">
+<rect x="0" y="433.05" width="1000" height="183.59" fill="oklch(0.62 0.06 72)" opacity="0.19"/>
+<rect x="215.38" y="620.93" width="784.62" height="146.42" fill="oklch(0.62 0.06 72)" opacity="0.16"/>
+<rect x="0" y="777.08" width="1000" height="19.77" fill="oklch(0.62 0.06 72)" opacity="0.41"/>
+<rect x="272.76" y="801.29" width="425.41" height="75.12" fill="oklch(0.62 0.06 72)" opacity="0.18"/>
+<rect x="83.9" y="876.76" width="337.05" height="29.61" fill="oklch(0.62 0.06 72)" opacity="0.17"/>
+<rect x="0" y="907.9" width="1000" height="23.17" fill="oklch(0.62 0.06 72)" opacity="0.38"/>
+<rect x="373.59" y="932.48" width="626.41" height="22.94" fill="oklch(0.78 0.19 72)" opacity="0.37"/>
+<rect x="0" y="963.74" width="1000" height="24.3" fill="oklch(0.78 0.19 72)" opacity="0.41"/>
+<rect x="275.7" y="990.92" width="724.3" height="23.52" fill="oklch(0.62 0.06 72)" opacity="0.43"/>
+<rect x="278.66" y="1014.82" width="485.5" height="33.27" fill="oklch(0.78 0.19 72)" opacity="0.41"/>
+<rect x="0" y="1058.97" width="1000" height="11.49" fill="oklch(0.62 0.06 72)" opacity="0.23"/>
+<rect x="0" y="1082.17" width="1000" height="31.45" fill="oklch(0.62 0.06 72)" opacity="0.26"/>
+<rect x="0" y="1127.41" width="1000" height="16.53" fill="oklch(0.62 0.06 72)" opacity="0.36"/>
+<rect x="0" y="1153.91" width="1000" height="26.48" fill="oklch(0.62 0.06 72)" opacity="0.37"/>
+<rect x="0" y="1189.17" width="1000" height="22.86" fill="oklch(0.62 0.06 72)" opacity="0.37"/>
+<rect x="0" y="1221.57" width="1000" height="6.74" fill="oklch(0.62 0.06 72)" opacity="0.19"/>
+<rect x="280.12" y="1231.83" width="522.05" height="156.76" fill="oklch(0.62 0.06 72)" opacity="0.15"/>
+    </g>
+    <rect x="254.5" y="143.91" width="638.22" height="807.65" fill="none" stroke="oklch(0.95 0.02 90)" stroke-width="2" opacity="0.5"/>
+  </g>
+  <rect width="1000" height="1250" filter="url(#grain)" opacity="0.12" style="mix-blend-mode:overlay"/>
+</svg>

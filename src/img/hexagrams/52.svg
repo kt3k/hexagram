@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="1000" height="1250" role="img" aria-label="艮為山のイメージ">
+  <title>艮為山（第52卦 ䷳）</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="oklch(0.95 0.02 148)"/>
+      <stop offset="100%" stop-color="oklch(0.9 0.03 148)"/>
+    </linearGradient>
+    <linearGradient id="fadeDown" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="49.45%" stop-color="#fff"/>
+      <stop offset="62.08%" stop-color="#000"/>
+    </linearGradient>
+    <linearGradient id="fadeUp" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="49.45%" stop-color="#000"/>
+      <stop offset="62.08%" stop-color="#fff"/>
+    </linearGradient>
+    <mask id="maskUpper"><rect width="1000" height="1250" fill="url(#fadeDown)"/></mask>
+    <mask id="maskLower"><rect width="1000" height="1250" fill="url(#fadeUp)"/></mask>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="52"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <clipPath id="frame"><rect width="1000" height="1250"/></clipPath>
+  </defs>
+  <rect width="1000" height="1250" fill="url(#bg)"/>
+  <g clip-path="url(#frame)">
+    <g mask="url(#maskUpper)">
+<path d="M 0 776.03 L -125 394.66 L 0 776.03 L 125 502.76 L 250 776.03 L 375 272.83 L 500 776.03 L 625 387.85 L 750 776.03 L 875 451.45 L 1000 776.03 L 1000 776.03 L 0 776.03 Z" fill="oklch(0.55 0.06 148)" opacity="0.14"/>
+<path d="M 0 698.42 L -166.67 308.93 L 0 698.42 L 166.67 442.95 L 333.33 698.42 L 500 539.83 L 666.67 698.42 L 833.33 531.58 L 1000 698.42 L 1000 776.03 L 0 776.03 Z" fill="oklch(0.55 0.06 148)" opacity="0.21"/>
+<path d="M 0 620.82 L -71.43 474.07 L 0 620.82 L 71.43 267.03 L 142.86 620.82 L 214.29 342.16 L 285.71 620.82 L 357.14 235.01 L 428.57 620.82 L 500 267.05 L 571.43 620.82 L 642.86 243.43 L 714.29 620.82 L 785.71 356.18 L 857.14 620.82 L 928.57 371.9 L 1000 620.82 L 1000 776.03 L 0 776.03 Z" fill="oklch(0.55 0.06 148)" opacity="0.28"/>
+<path d="M 0 543.22 L -125 391.18 L 0 543.22 L 125 382.33 L 250 543.22 L 375 421.29 L 500 543.22 L 625 431.77 L 750 543.22 L 875 321.64 L 1000 543.22 L 1000 776.03 L 0 776.03 Z" fill="oklch(0.55 0.06 148)" opacity="0.34"/>
+<path d="M 0 465.62 L -83.33 221.22 L 0 465.62 L 83.33 306.12 L 166.67 465.62 L 250 338.84 L 333.33 465.62 L 416.67 352.77 L 500 465.62 L 583.33 191.61 L 666.67 465.62 L 750 217.01 L 833.33 465.62 L 916.67 237.17 L 1000 465.62 L 1000 776.03 L 0 776.03 Z" fill="oklch(0.55 0.06 148)" opacity="0.41"/>
+<path d="M 0 388.01 L -125 230.44 L 0 388.01 L 125 309.85 L 250 388.01 L 375 260.86 L 500 388.01 L 625 315.94 L 750 388.01 L 875 294.31 L 1000 388.01 L 1000 776.03 L 0 776.03 Z" fill="oklch(0.55 0.06 148)" opacity="0.48"/>
+    </g>
+    <g mask="url(#maskLower)">
+<path d="M 0 1250 L -125 1071.94 L 0 1250 L 125 838.41 L 250 1250 L 375 1006.35 L 500 1250 L 625 846.44 L 750 1250 L 875 1084.94 L 1000 1250 L 1000 1250 L 0 1250 Z" fill="oklch(0.55 0.06 148)" opacity="0.14"/>
+<path d="M 0 1186.81 L -71.43 950.06 L 0 1186.81 L 71.43 1069.93 L 142.86 1186.81 L 214.29 919.74 L 285.71 1186.81 L 357.14 1025.91 L 428.57 1186.81 L 500 1022.94 L 571.43 1186.81 L 642.86 1026.51 L 714.29 1186.81 L 785.71 920.72 L 857.14 1186.81 L 928.57 843.09 L 1000 1186.81 L 1000 1250 L 0 1250 Z" fill="oklch(0.55 0.06 148)" opacity="0.23"/>
+<path d="M 0 1123.62 L -125 929.85 L 0 1123.62 L 125 832.41 L 250 1123.62 L 375 869.68 L 500 1123.62 L 625 1037.11 L 750 1123.62 L 875 967.76 L 1000 1123.62 L 1000 1250 L 0 1250 Z" fill="oklch(0.55 0.06 148)" opacity="0.31"/>
+<path d="M 0 1060.43 L -83.33 852.09 L 0 1060.43 L 83.33 832.75 L 166.67 1060.43 L 250 841.36 L 333.33 1060.43 L 416.67 943.03 L 500 1060.43 L 583.33 851.34 L 666.67 1060.43 L 750 924.12 L 833.33 1060.43 L 916.67 851.3 L 1000 1060.43 L 1000 1250 L 0 1250 Z" fill="oklch(0.55 0.06 148)" opacity="0.4"/>
+<path d="M 0 997.24 L -125 871.89 L 0 997.24 L 125 899.92 L 250 997.24 L 375 932.05 L 500 997.24 L 625 929.51 L 750 997.24 L 875 903.42 L 1000 997.24 L 1000 1250 L 0 1250 Z" fill="oklch(0.55 0.06 148)" opacity="0.48"/>
+    </g>
+    <rect x="290.97" y="262.49" width="380.23" height="527.42" fill="none" stroke="oklch(0.25 0.02 90)" stroke-width="2" opacity="0.38"/>
+  </g>
+  <rect width="1000" height="1250" filter="url(#grain)" opacity="0.09" style="mix-blend-mode:overlay"/>
+</svg>

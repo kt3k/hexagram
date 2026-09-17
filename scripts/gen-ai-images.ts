@@ -7,6 +7,7 @@
  *
  * 必要な環境変数:
  *   IMAGE_API_KEY   画像生成 API の鍵（必須）
+ *                   OPENAI_KEY / OPENAI_API_KEY でも代用できる
  *   IMAGE_API_URL   エンドポイント。既定は OpenAI 互換の images/generations
  *   IMAGE_MODEL     モデル名。既定は gpt-image-1
  *
@@ -29,7 +30,10 @@ const flags = parseArgs(Deno.args, {
 
 const API_URL = Deno.env.get("IMAGE_API_URL") ??
   "https://api.openai.com/v1/images/generations";
-const API_KEY = Deno.env.get("IMAGE_API_KEY");
+// 鍵の変数名は環境によって違うので、よくある名前を順に見る
+const API_KEY = Deno.env.get("IMAGE_API_KEY") ??
+  Deno.env.get("OPENAI_KEY") ??
+  Deno.env.get("OPENAI_API_KEY");
 const MODEL = Deno.env.get("IMAGE_MODEL") ?? "gpt-image-1";
 
 /** 八卦の象を、画像生成に通じる情景の言葉に置きかえる */
@@ -119,7 +123,8 @@ if (flags["dry-run"]) {
 
 if (!API_KEY) {
   console.error(
-    "IMAGE_API_KEY が設定されていません。指示文だけ見るなら --dry-run を付けてください。",
+    "鍵が設定されていません。IMAGE_API_KEY・OPENAI_KEY・OPENAI_API_KEY の" +
+      "いずれかを設定してください。指示文だけ見るなら --dry-run を付けてください。",
   );
   Deno.exit(1);
 }

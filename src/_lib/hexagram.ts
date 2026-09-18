@@ -97,7 +97,7 @@ function enrich(raw: RawHexagram): Hexagram {
   return {
     ...raw,
     glyph: String.fromCodePoint(0x4dc0 + n - 1),
-    url: `/hexagrams/${n}/`,
+    url: `/${n}/`,
     ...pickImage(n),
     lines: toLines(binary),
     lower: TRIGRAMS[binary.slice(0, 3)],
